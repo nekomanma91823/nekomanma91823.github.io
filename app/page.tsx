@@ -19,10 +19,10 @@ const navLinks = [
 export default function Home() {
   return (
     <div className="min-h-screen bg-zinc-50 text-foreground font-sans selection:bg-blue-100 selection:text-blue-900">
-      <div className="max-w-6xl mx-auto flex flex-col lg:flex-row">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[320px_1fr]">
         
         {/* ================= サイドバー (左カラム) ================= */}
-        <aside className="lg:w-80 lg:shrink-0 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto px-6 py-12 lg:py-24 border-b lg:border-b-0 lg:border-r border-neutral-200 bg-zinc-50 z-10">
+        <aside className="lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto px-6 py-12 lg:py-24 border-b lg:border-b-0 lg:border-r border-neutral-200 bg-zinc-50 z-10">
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -83,7 +83,7 @@ export default function Home() {
         </aside>
 
         {/* ================= メインコンテンツ (右カラム) ================= */}
-        <main className="lg:flex-1 lg:min-w-0 px-6 lg:px-12 py-12 lg:py-24 space-y-24">
+        <main className="min-w-0 px-6 lg:px-12 py-12 lg:py-24 space-y-24">
           
           {/* ========== About セクション ========== */}
           <motion.section 
