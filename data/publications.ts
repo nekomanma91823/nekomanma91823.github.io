@@ -52,6 +52,7 @@ export const publicationsData: PublicationItem[] = [
     id: "omu-biz-2024",
     type: "award",
     year: 2024,
+    link: "https://www.omu.ac.jp/las/jinzai/info/report/entry-66407.html",
     title: "大阪公立大学ビジネスコンテスト2024 irori賞",
   },
   {
