@@ -13,6 +13,8 @@ export interface PublicationItem {
   linkText?: string;
 }
 
+export type Locale = "ja" | "en";
+
 export const getPublicationIcon = (type: PublicationType): LucideIcon => {
   switch (type) {
     case "award":
@@ -25,7 +27,23 @@ export const getPublicationIcon = (type: PublicationType): LucideIcon => {
   }
 };
 
-export const getPublicationTypeLabel = (type: PublicationType): string => {
+export const getPublicationTypeLabel = (
+  type: PublicationType,
+  locale: Locale = "ja",
+): string => {
+  if (locale === "en") {
+    switch (type) {
+      case "award":
+        return "Award";
+      case "paper":
+        return "Paper / Book";
+      case "conference":
+        return "International Conference (Peer-Reviewed)";
+      default:
+        return "Publication";
+    }
+  }
+
   switch (type) {
     case "award":
       return "受賞";
@@ -38,29 +56,59 @@ export const getPublicationTypeLabel = (type: PublicationType): string => {
   }
 };
 
-export const publicationsData: PublicationItem[] = [
-  {
-    id: "icicic-2025",
-    type: "conference",
-    year: 2025,
-    month: 8,
-    title: "The 19th International Conference on Innovative Computing, Information and Control (ICICIC2025)",
-    link: "http://www.icicconference.org/icicic2025/",
-    linkText: "公式サイト",
-  },
-  {
-    id: "omu-biz-2024",
-    type: "award",
-    year: 2024,
-    link: "https://www.omu.ac.jp/las/jinzai/info/report/entry-66407.html",
-    title: "大阪公立大学ビジネスコンテスト2024 irori賞",
-  },
-  {
-    id: "pizza-2024",
-    type: "award",
-    year: 2024,
-    title: "ピザの会2024 奨励賞",
-    link: "https://w-pizza.com/contest-info/winner/",
-    linkText: "詳細を見る",
-  },
-];
+export const publicationsDataByLocale: Record<Locale, PublicationItem[]> = {
+  ja: [
+    {
+      id: "icicic-2025",
+      type: "conference",
+      year: 2025,
+      month: 8,
+      title:
+        "The 19th International Conference on Innovative Computing, Information and Control (ICICIC2025)",
+      link: "http://www.icicconference.org/icicic2025/",
+      linkText: "公式サイト",
+    },
+    {
+      id: "omu-biz-2024",
+      type: "award",
+      year: 2024,
+      link: "https://www.omu.ac.jp/las/jinzai/info/report/entry-66407.html",
+      title: "大阪公立大学ビジネスコンテスト2024 irori賞",
+    },
+    {
+      id: "pizza-2024",
+      type: "award",
+      year: 2024,
+      title: "ピザの会2024 奨励賞",
+      link: "https://w-pizza.com/contest-info/winner/",
+      linkText: "詳細を見る",
+    },
+  ],
+  en: [
+    {
+      id: "icicic-2025",
+      type: "conference",
+      year: 2025,
+      month: 8,
+      title:
+        "The 19th International Conference on Innovative Computing, Information and Control (ICICIC 2025)",
+      link: "http://www.icicconference.org/icicic2025/",
+      linkText: "Official Site",
+    },
+    {
+      id: "omu-biz-2024",
+      type: "award",
+      year: 2024,
+      link: "https://www.omu.ac.jp/las/jinzai/info/report/entry-66407.html",
+      title: "Osaka Metropolitan University Business Contest 2024, irori Award",
+    },
+    {
+      id: "pizza-2024",
+      type: "award",
+      year: 2024,
+      title: "Pizza no Kai 2024, Encouragement Award",
+      link: "https://w-pizza.com/contest-info/winner/",
+      linkText: "View Details",
+    },
+  ],
+};
