@@ -29,10 +29,15 @@ import {
   getPublicationIcon,
   getPublicationTypeLabel,
 } from "@/data/publications";
-import { profileDataByLocale, type Locale } from "@/data/profile";
+import {
+  contactEmail,
+  profileDataByLocale,
+  type Locale,
+} from "@/data/profile";
 import { projectsDataByLocale } from "@/data/projects";
 import { MarkedText } from "@/components/marked-text";
 import { HidingCat } from "@/components/hiding-cat";
+import { EmailContact } from "@/components/email-contact";
 
 const translations = {
   ja: {
@@ -44,7 +49,7 @@ const translations = {
       { name: "Projects", href: "#projects", icon: Code },
     ],
     profileHeadline:
-      "大阪公立大学 情報学研究科 修士1年\n株式会社Cmiru エンジニア",
+      "大阪公立大学 情報学研究科 修士1年\n株式会社Cmiru 共同創業者・エンジニア",
     cmiruProfile: "Cmiru Profile",
     aboutTitle: "About Me",
     interestsTitle: "Interests",
@@ -55,7 +60,7 @@ const translations = {
     projectTitle: "Projects",
     projectStatusOngoing: "進行中",
     projectProblemLabel: "背景課題",
-    projectRoleLabel: "あなたの役割",
+    projectRoleLabel: "担当",
     projectImplementationLabel: "実装",
     projectResultLabel: "結果",
     projectLearningLabel: "学び",
@@ -68,6 +73,11 @@ const translations = {
     readArticle: "記事を読む",
     openMenu: "メニューを開く",
     closeMenu: "メニューを閉じる",
+    email: {
+      copy: "コピー",
+      copied: "コピーしました",
+      hint: "🐾 を @ に置き換えてください",
+    },
   },
   en: {
     nav: [
@@ -78,7 +88,7 @@ const translations = {
       { name: "Projects", href: "#projects", icon: Code },
     ],
     profileHeadline:
-      "M1, Graduate School of Informatics, Osaka Metropolitan University\nEngineer at Cmiru Inc.",
+      "M1, Graduate School of Informatics, Osaka Metropolitan University\nCo-founder & Engineer at Cmiru Inc.",
     cmiruProfile: "Cmiru Profile",
     aboutTitle: "About Me",
     interestsTitle: "Interests",
@@ -103,6 +113,11 @@ const translations = {
     readArticle: "Read Article",
     openMenu: "Open menu",
     closeMenu: "Close menu",
+    email: {
+      copy: "Copy",
+      copied: "Copied",
+      hint: "Replace 🐾 with @",
+    },
   },
 } satisfies Record<
   Locale,
@@ -131,6 +146,7 @@ const translations = {
     readArticle: string;
     openMenu: string;
     closeMenu: string;
+    email: { copy: string; copied: string; hint: string };
   }
 >;
 
@@ -168,7 +184,10 @@ export default function Home() {
               <h1 className="text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl">
                 並崎 功真
               </h1>
-              <p className="mt-4 text-base text-neutral-600 leading-relaxed font-medium whitespace-pre-line">
+              <p className="mt-3 text-lg font-semibold text-neutral-800">
+                {profileData.tagline}
+              </p>
+              <p className="mt-4 text-base text-neutral-600 leading-relaxed font-medium whitespace-pre-line [word-break:auto-phrase]">
                 {t.profileHeadline}
               </p>
               <div className="mt-4 inline-flex rounded-md border border-neutral-200 p-1 bg-white">
@@ -207,6 +226,7 @@ export default function Home() {
               >
                 <Github className="w-4 h-4 mr-2" /> GitHub (@nekomanma91823)
               </a>
+              <EmailContact {...contactEmail} labels={t.email} />
             </div>
 
             {/* ナビゲーション */}
@@ -297,6 +317,12 @@ export default function Home() {
                     {item.current && (
                       <span className="block text-xs font-medium text-blue-500 font-mono mt-0.5">
                         Present
+                      </span>
+                    )}
+                    {item.end && (
+                      <span className="block text-xs text-neutral-400 font-mono mt-0.5">
+                        – {item.end.year}.
+                        {item.end.month.toString().padStart(2, "0")}
                       </span>
                     )}
                   </div>
