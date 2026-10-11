@@ -2,6 +2,7 @@ import {
   Award,
   Briefcase,
   Code,
+  FlaskConical,
   Newspaper,
   User,
   type LucideIcon,
@@ -15,6 +16,8 @@ export interface UiText {
   profileHeadline: string;
   cmiruProfile: string;
   aboutTitle: string;
+  researchTitle: string;
+  researchOngoing: string;
   interestsTitle: string;
   skillsTitle: string;
   careerTitle: string;
@@ -40,6 +43,7 @@ export interface UiText {
 
 const nav: UiText["nav"] = [
   { name: "About", href: "#about", icon: User },
+  { name: "Research", href: "#research", icon: FlaskConical },
   { name: "Career", href: "#career", icon: Briefcase },
   { name: "Publications", href: "#publications", icon: Award },
   { name: "Articles", href: "#articles", icon: Newspaper },
@@ -53,6 +57,8 @@ export const uiTextByLocale: Record<Locale, UiText> = {
       "大阪公立大学 情報学研究科 修士1年\n株式会社Cmiru 共同創業者・エンジニア",
     cmiruProfile: "Cmiru Profile",
     aboutTitle: "About Me",
+    researchTitle: "Research",
+    researchOngoing: "研究中",
     interestsTitle: "Interests",
     skillsTitle: "Skills",
     careerTitle: "Career",
@@ -86,6 +92,8 @@ export const uiTextByLocale: Record<Locale, UiText> = {
       "M1, Graduate School of Informatics, Osaka Metropolitan University\nCo-founder & Engineer at Cmiru Inc.",
     cmiruProfile: "Cmiru Profile",
     aboutTitle: "About Me",
+    researchTitle: "Research",
+    researchOngoing: "Ongoing",
     interestsTitle: "Interests",
     skillsTitle: "Skills",
     careerTitle: "Career",
