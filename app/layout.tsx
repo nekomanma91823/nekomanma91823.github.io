@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Takuma | Portfolio",
-  description: "Portfolio of Takuma, Grad Student at Kyoto University",
+  description: "Portfolio of Takuma Namisaki, Graduate Student at Osaka Metropolitan University",
 };
 
 export default function RootLayout({
