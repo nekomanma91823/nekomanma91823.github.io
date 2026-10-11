@@ -448,6 +448,17 @@ export default function Home() {
                       )}
                     </CardTitle>
                     <CardDescription>{project.category}</CardDescription>
+                    {project.url && (
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex w-fit items-center gap-1 text-sm text-neutral-600 hover:text-neutral-900 underline-offset-4 hover:underline"
+                      >
+                        {project.url.replace(/^https?:\/\//, "")}
+                        <ExternalLink className="h-3.5 w-3.5" />
+                      </a>
+                    )}
                   </CardHeader>
                   <CardContent className="space-y-4">
                     <div>

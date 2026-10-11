@@ -8,6 +8,7 @@ export interface ProjectItem {
   implementation: string;
   result: string;
   learning: string;
+  url?: string;
   status?: "ongoing";
 }
 
@@ -46,6 +47,40 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
         "2025年12月に幕張メッセ開催のボードゲームマーケットで展示し、海外来場者からファミリー層まで幅広く好評を得た。2026年4月よりAmazonで販売開始予定。",
       learning:
         "既存ゲームのルールに新技術を掛け合わせることで、体験価値は大きく再設計できると実感した。アイデア自体の新規性だけでなく、組み合わせの設計が差別化の鍵になる。",
+    },
+    {
+      id: "yes-or-no",
+      title: "YES or NO（匿名YES/NOパーティーゲーム）",
+      category: "Webサービス / リアルタイム通信 / エンタメ",
+      tags: ["Next.js", "Cloudflare Workers", "Durable Objects", "WebSocket", "BigQuery"],
+      problem:
+        "飲み会や学校・職場のアイスブレイクでは、本音を聞きたくても人前では答えにくい質問がある。一方、既存の匿名アンケートツールは事前準備が必要で、その場で質問を出し合って盛り上がる用途には向いていなかった。",
+      role:
+        "株式会社シーみるのプロダクトとして、開発メンバーとともにサービスの方向性を検討。バックエンドのCloudflare移行や本番切り替え、プライバシーポリシー改定などのプルリクエストをレビューし、リリース判断を担当した。",
+      implementation:
+        "登録不要のモバイルWebアプリとしてNext.jsで画面を構築。スマホからルームコード（QRコード）で参加し、参加者が投稿した質問に順番に匿名でYES/NO回答する。質問と投票は利用者から読めないようにし、匿名化した集計結果だけを配信する設計にした。当初のFirebase構成では大人数の一斉回答で書き込みの競合が起きたため、Cloudflare Workers + Durable Objectsへ移行し、ルームごとに処理を1本化。WebSocketで状態を配信し、Turnstileとレート制限で不正利用を防いでいる。利用データはD1にためてBigQueryへ日次転送し、お題の改善に活用している。",
+      result:
+        "yesno.cmiru.com で一般公開。99人・10問の負荷試験では、一斉参加・一斉回答で失敗した操作0件・集計の不一致0件を確認し、Firebase版で発生していた競合を解消した。iPhoneのSafari/Chromeでアプリを裏に回して戻しても、自動で最新状態に復帰することも実機で確認した。",
+      learning:
+        "リアルタイムの多人数ゲームでは、機能よりも「同時アクセス時に状態が壊れないこと」が体験の土台になると学んだ。負荷試験で問題を定量的に示し、アーキテクチャごと見直す判断の重要性を実感した。",
+      url: "https://yesno.cmiru.com",
+    },
+    {
+      id: "machinaka-bingo",
+      title: "街なかビンゴ（街歩きビンゴアプリ）",
+      category: "モバイルアプリ / 企画開発 / 地域・おでかけ",
+      tags: ["Flutter", "Firebase", "iOS", "Android"],
+      problem:
+        "散歩やおでかけ、旅行先のまち歩きは、目的がないと単調になりがちで、いつもの道の新しい発見に気づきにくい。既存のビンゴアプリは抽選型のゲームが中心で、街歩きと組み合わせて遊べるものは少なかった。",
+      role:
+        "株式会社シーみるのプロダクトとして、開発メンバーとともに企画・サービス設計に関わった。",
+      implementation:
+        "FlutterでiOS/Androidアプリを開発。好きな言葉を入れる手動作成、おすすめテーマからの作成、単語群からのランダム生成の3通りでカードをつくれ、3×3〜5×5のサイズやFREEマスも選べる。見つけたマスは写真付きで記録でき、完成したカードは画像として保存できる。Firestoreを使ったリンク共有で友達にカードを送れ、受け取った人はWeb版からも遊べる。Remote Configによる更新案内、GA4による同意ベースの計測、Cloudflare Pagesでのランディングページ（bingo.cmiru.com）も整備した。",
+      result:
+        "App StoreとGoogle Playでアプリを公開。ランディングページから各ストアへの導線を用意し、散歩・おでかけ・旅行の場面で気軽に遊べるサービスとして提供している。",
+      learning:
+        "「歩く」という日常の行動にビンゴという分かりやすいルールを重ねることで、新しい体験をつくれると学んだ。初めての人でも迷わず遊べるよう、チュートリアルやカード作成の導線設計が重要になる。",
+      url: "https://bingo.cmiru.com",
     },
     {
       id: "ml-learning-site",
@@ -97,6 +132,40 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
         "Showcased at Board Game Market in Makuhari Messe (Dec 2025), receiving strong traction from both international visitors and families. Planned to launch on Amazon in Apr 2026.",
       learning:
         "Even familiar game mechanics can generate new value when combined with the right technology and interaction design.",
+    },
+    {
+      id: "yes-or-no",
+      title: "YES or NO (Anonymous Yes/No Party Game)",
+      category: "Web Service / Real-time Communication / Entertainment",
+      tags: ["Next.js", "Cloudflare Workers", "Durable Objects", "WebSocket", "BigQuery"],
+      problem:
+        "At parties or icebreakers at school and work, some questions are hard to answer honestly in front of others. Existing anonymous survey tools require advance setup and are not designed for asking questions on the spot and enjoying the results together.",
+      role:
+        "As a CMIRU product, worked with the development team on the service direction. Reviewed pull requests for the backend migration to Cloudflare, the production cutover, and the privacy policy revision, and made release decisions.",
+      implementation:
+        "Built a sign-up-free mobile web app with Next.js. Players join a room with a room code (or QR code) and anonymously answer YES/NO to questions posted by participants in turn. Questions and votes are never readable by clients; only anonymized aggregate results are delivered. Because the initial Firebase setup suffered write contention when many players answered at once, the backend was migrated to Cloudflare Workers + Durable Objects so each room is processed sequentially. State is pushed over WebSocket, abuse is prevented with Turnstile and rate limiting, and usage data is buffered in D1 and exported daily to BigQuery to improve question content.",
+      result:
+        "Publicly launched at yesno.cmiru.com. A load test with 99 players and 10 questions showed zero failed operations and zero result mismatches for simultaneous joins and answers, resolving the contention seen in the Firebase version. Also verified on real iPhones (Safari/Chrome) that the app recovers to the latest state automatically after returning from the background.",
+      learning:
+        "In real-time multiplayer games, keeping state consistent under concurrent access is the foundation of the experience. Quantifying the problem through load testing made it possible to justify rethinking the architecture itself.",
+      url: "https://yesno.cmiru.com",
+    },
+    {
+      id: "machinaka-bingo",
+      title: "Machinaka Bingo (Town-Walking Bingo App)",
+      category: "Mobile App / Product Planning / Local & Outings",
+      tags: ["Flutter", "Firebase", "iOS", "Android"],
+      problem:
+        "Walks, outings, and sightseeing strolls can feel monotonous without a goal, making it easy to miss new discoveries on familiar streets. Most bingo apps are draw-based games, and few are designed to be played while walking around town.",
+      role:
+        "As a CMIRU product, took part in planning and service design together with the development team.",
+      implementation:
+        "Developed an iOS/Android app with Flutter. Cards can be created in three ways (entering your own words, choosing from recommended themes, or random generation from word sets), with sizes from 3x3 to 5x5 and an optional FREE cell. Found cells can be recorded with photos, and completed cards can be saved as images. Cards can be shared with friends via links backed by Firestore, and recipients can also play on the web. Also set up update prompts with Remote Config, consent-based GA4 tracking, and a landing page on Cloudflare Pages (bingo.cmiru.com).",
+      result:
+        "Released on the App Store and Google Play, with a landing page linking to both stores, offered as a casual way to enjoy walks, outings, and trips.",
+      learning:
+        "Layering a simple, familiar rule like bingo onto an everyday activity like walking can create a new experience. Onboarding, such as tutorials and a clear card-creation flow, is key for first-time users.",
+      url: "https://bingo.cmiru.com",
     },
     {
       id: "ml-learning-site",
