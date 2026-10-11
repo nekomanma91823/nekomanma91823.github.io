@@ -31,6 +31,8 @@ import {
 } from "@/data/publications";
 import { profileDataByLocale, type Locale } from "@/data/profile";
 import { projectsDataByLocale } from "@/data/projects";
+import { MarkedText } from "@/components/marked-text";
+import { HidingCat } from "@/components/hiding-cat";
 
 const translations = {
   ja: {
@@ -228,6 +230,7 @@ export default function Home() {
           {/* ========== About セクション ========== */}
           <motion.section
             id="about"
+            data-cat-topic="about"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -273,6 +276,7 @@ export default function Home() {
           {/* ========== Career セクション ========== */}
           <motion.section
             id="career"
+            data-cat-topic="career"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -317,6 +321,7 @@ export default function Home() {
           {/* ========== Publications & Awards セクション ========== */}
           <motion.section
             id="publications"
+            data-cat-topic="publications"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -380,6 +385,7 @@ export default function Home() {
           {/* ========== Articles セクション ========== */}
           <motion.section
             id="articles"
+            data-cat-topic="articles"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -438,6 +444,7 @@ export default function Home() {
               {projectsData.map((project) => (
                 <Card
                   key={project.id}
+                  data-cat-topic={project.id}
                   className="hover:border-neutral-300 transition-colors shadow-sm"
                 >
                   <CardHeader>
@@ -466,7 +473,7 @@ export default function Home() {
                         {t.projectProblemLabel}
                       </h3>
                       <p className="text-sm text-neutral-600 leading-relaxed">
-                        {project.problem}
+                        <MarkedText text={project.problem} />
                       </p>
                     </div>
 
@@ -475,7 +482,7 @@ export default function Home() {
                         {t.projectRoleLabel}
                       </h3>
                       <p className="text-sm text-neutral-600 leading-relaxed">
-                        {project.role}
+                        <MarkedText text={project.role} />
                       </p>
                     </div>
 
@@ -484,7 +491,7 @@ export default function Home() {
                         {t.projectImplementationLabel}
                       </h3>
                       <p className="text-sm text-neutral-600 leading-relaxed">
-                        {project.implementation}
+                        <MarkedText text={project.implementation} />
                       </p>
                     </div>
 
@@ -493,7 +500,7 @@ export default function Home() {
                         {t.projectResultLabel}
                       </h3>
                       <p className="text-sm text-neutral-600 leading-relaxed">
-                        {project.result}
+                        <MarkedText text={project.result} />
                       </p>
                     </div>
 
@@ -502,7 +509,7 @@ export default function Home() {
                         {t.projectLearningLabel}
                       </h3>
                       <p className="text-sm text-neutral-600 leading-relaxed">
-                        {project.learning}
+                        <MarkedText text={project.learning} />
                       </p>
                     </div>
                   </CardContent>
@@ -519,13 +526,23 @@ export default function Home() {
           </motion.section>
 
           {/* ================= Footer ================= */}
-          <footer className="pt-24 pb-8 border-t border-neutral-200 text-center text-sm text-neutral-500">
+          <footer
+            data-cat-topic="footer"
+            className="pt-24 pb-8 border-t border-neutral-200 text-center text-sm text-neutral-500"
+          >
             <p>
               © {new Date().getFullYear()} Takuma Namisaki. All rights reserved.
             </p>
           </footer>
         </main>
       </div>
+
+      {/* ================= 右上に隠れている猫 ================= */}
+      {/* PCでは右カラムの右端にそろえる */}
+      <HidingCat
+        locale={locale}
+        className="fixed top-0 z-30 right-[calc(max(0px,(100vw_-_72rem)_/_2)_+_1.5rem)]"
+      />
 
       {/* ================= モバイル向け フローティング・ハンバーガーメニュー ================= */}
       <button
