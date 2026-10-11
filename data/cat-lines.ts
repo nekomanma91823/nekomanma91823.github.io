@@ -6,7 +6,7 @@ export type Locale = "ja" | "en";
 export const catLinesByLocale: Record<Locale, Record<string, string>> = {
   ja: {
     about: "この人、猫好きなのに猫アレルギーなんだって",
-    career: "大学院に通いながら、Cmiruでエンジニアもしてるらしい",
+    career: "大学院に通いながら、会社も一緒に立ち上げたらしい",
     publications: "国際会議でも発表したんだって",
     articles: "AIと仕様駆動開発の記事を書いたらしい",
     "sql-rag-agent": "SQLが書けない人でも調べられるようにしたらしい",
@@ -18,7 +18,7 @@ export const catLinesByLocale: Record<Locale, Record<string, string>> = {
   },
   en: {
     about: "This human loves cats. And is allergic to them.",
-    career: "Grad school and an engineering job at Cmiru, both at once.",
+    career: "Grad school, and co-founded a startup on the side.",
     publications: "Presented at an international conference, too.",
     articles: "Wrote about spec-driven development with AI.",
     "sql-rag-agent": "Made data searchable without writing SQL.",

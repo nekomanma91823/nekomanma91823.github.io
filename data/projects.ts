@@ -22,19 +22,19 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       category: "業務効率化 / DataOps / AI活用",
       tags: ["Next.js", "AWS", "Text-to-SQL", "RAG"],
       problem:
-        "アルバイト先の大手予備校のチームでは、大規模なデータの不整合を修正する業務が発生していた一方、データベースを直接閲覧できず、Excelベースでの確認に依存していたため、調査の速度と精度に課題があった。",
+        "所属する大手予備校の過去問データ整備チームでは、大学入試の過去問の配点や正解などをデータベースに登録するマスタ業務を担っている。多くのテーブルのデータをCSVで扱い、データベースを直接操作できない運用だったため、Excelでの作業が常態化していた。プログラムを書けるメンバーは一部で、Pythonでの効率化も業務量に追いついていなかった。",
       role:
-        "フロントエンドからバックエンドまで一貫してSQL-RAGアプリを設計・実装。加えて、データ修正時の判断基準や手順など、担当者の暗黙知をプロンプトと運用ルールとして明文化した。",
+        "チームの統括者として、AIを使ったSQLアプリを発案。試作を作って社員への定例報告の場で提案し、開発から導入研修までを主導した。データ修正時の判断基準や手順など、担当者の暗黙知もプロンプトと運用ルールとして明文化した。",
       implementation:
-        "Next.jsで操作UIを実装し、AWS側でCSV由来テーブルをDB化。自然言語入力をText-to-SQLへ変換して調査可能にし、必要な照会を非エンジニアでも実行できる構成にした（アーキテクチャ図は別途追加予定）。",
+        "Next.jsで画面を作り、AWS上でCSVのデータをデータベース化。自然言語の質問からSQLを生成し、構文をチェックしてから実行する。過去に使われたSQLを検索して生成に活かす（RAG）ハイブリッド構成にし、使うほど意図どおりのSQLが出るようにした。AIの誤りをメンバー自身が見抜けるよう、SQL研修も実施した（構成図は別途追加予定）。",
       result:
-        "SQL知識がないメンバーでもデータ調査を進められる環境を構築し、DBを直接扱わない他チームでも現状把握が可能になった。さらに、修正案のドラフト生成をAIで自動化し、==修正作業の手間を削減==した。",
+        "Excelでは扱えない規模のデータを処理できるようになり、マスタ業務の工数を減らせた。生成したSQLが蓄積される仕組みで、作業の属人化も解消した。現在は、追加データの作成やバリデーションもAIが自律的に行えるよう機能を広げている。",
       learning:
         "AI導入では速度向上だけでなく、精度保証の設計が本質的に重要だと学んだ。中間表現としてSQLを採用したことで、回答の妥当性確認と運用の再現性を両立できた。",
     },
     {
       id: "picotouch",
-      title: "ピコタッチ（NFCボードゲーム）",
+      title: "アニマル ピコタッチ（NFCボードゲーム）",
       category: "新規事業 / 企画開発 / エンタメ",
       tags: ["Flutter", "GCP", "NFC", "iOS"],
       problem:
@@ -44,7 +44,7 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       implementation:
         "Flutterでゲーム画面を実装し、GCPでバックエンドと履歴管理を構築。NFCならではの物理インタラクションを軸に、短時間でも盛り上がるUI/UXを設計した。",
       result:
-        "2025年12月に==幕張メッセ開催のボードゲームマーケットで展示==し、海外来場者からファミリー層まで幅広く好評を得た。2026年4月よりAmazonで販売開始予定。",
+        "2025年12月に==幕張メッセ開催のボードゲームマーケットで展示==し、海外来場者からファミリー層まで幅広く好評を得た。現在はAmazonで販売中。",
       learning:
         "既存ゲームのルールに新技術を掛け合わせることで、体験価値は大きく再設計できると実感した。アイデア自体の新規性だけでなく、組み合わせの設計が差別化の鍵になる。",
     },
@@ -107,19 +107,19 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       category: "Workflow Automation / DataOps / Applied AI",
       tags: ["Next.js", "AWS", "Text-to-SQL", "RAG"],
       problem:
-        "At a team of a major cram school (part-time role), reconciling inconsistencies in large tables was inefficient because the database could not be accessed directly, forcing investigation through Excel files.",
+        "I work on the past-exam data team at a major cram school, handling the master data work of registering scores, answers, and other details of past university entrance exam questions into a database. The data spanned many tables shared as CSV files, and without direct access to the database, Excel-based work had become the norm. Only some members could write code, and Python scripts could not keep up with the volume of work.",
       role:
-        "Built the SQL-RAG application end-to-end (frontend to backend). Also translated domain tacit knowledge into explicit prompts and operational rules.",
+        "As the team lead, proposed an AI-powered SQL app: built a prototype, pitched it at a regular progress meeting with staff, and led everything from development to onboarding training. Also turned tacit knowledge, such as how to judge and carry out data corrections, into explicit prompts and operational rules.",
       implementation:
-        "Implemented the UI with Next.js and built AWS-side services to convert CSV-held tables into a queryable database. Added a text-to-SQL flow so non-SQL users could investigate data through natural language queries.",
+        "Built the UI with Next.js and turned the CSV data into a database on AWS. Natural-language questions are converted into SQL, syntax-checked, and then executed. A hybrid design retrieves previously used SQL (RAG) to guide generation, so results get closer to what users intend the more the app is used. Also ran SQL training so members can spot AI mistakes themselves (architecture diagram coming soon).",
       result:
-        "Enabled non-SQL members to investigate data confidently and improved cross-team visibility for teams that did not directly use databases. AI-assisted draft generation for correction plans ==reduced the manual correction work==.",
+        "Made data at a scale Excel could not handle workable and reduced the master data workload. Because generated SQL accumulates over time, the work no longer depends on specific individuals. Now extending the app so AI can also create additional data and run validation on its own.",
       learning:
         "In AI-driven efficiency projects, preserving answer quality is as important as speed. Using SQL as an intermediate layer was critical for accuracy and auditability.",
     },
     {
       id: "picotouch",
-      title: "PicoTouch (NFC Board Game)",
+      title: "Animal PicoTouch (NFC Board Game)",
       category: "New Business / Product Planning / Entertainment",
       tags: ["Flutter", "GCP", "NFC", "iOS"],
       problem:
@@ -129,7 +129,7 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       implementation:
         "Developed gameplay with Flutter and built backend/history management on GCP. Focused on tactile, NFC-driven interactions for fast and engaging sessions.",
       result:
-        "==Showcased at Board Game Market in Makuhari Messe== (Dec 2025), receiving strong traction from both international visitors and families. Planned to launch on Amazon in Apr 2026.",
+        "==Showcased at Board Game Market in Makuhari Messe== (Dec 2025), receiving strong traction from both international visitors and families. Now available on Amazon.",
       learning:
         "Even familiar game mechanics can generate new value when combined with the right technology and interaction design.",
     },
