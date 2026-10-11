@@ -6,6 +6,7 @@ export type Locale = "ja" | "en";
 export const catLinesByLocale: Record<Locale, Record<string, string>> = {
   ja: {
     about: "この人、猫好きなのに猫アレルギーなんだって",
+    research: "AIが知識にどれだけ忠実に答えられるか、調べてるんだって",
     career: "大学院に通いながら、会社も一緒に立ち上げたらしい",
     publications: "国際会議でも発表したんだって",
     articles: "AIと仕様駆動開発の記事を書いたらしい",
@@ -18,6 +19,7 @@ export const catLinesByLocale: Record<Locale, Record<string, string>> = {
   },
   en: {
     about: "This human loves cats. And is allergic to them.",
+    research: "Checking how faithfully AI sticks to what it is told.",
     career: "Grad school, and co-founded a startup on the side.",
     publications: "Presented at an international conference, too.",
     articles: "Wrote about spec-driven development with AI.",
