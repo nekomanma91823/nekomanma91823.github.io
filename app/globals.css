@@ -24,6 +24,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* 成果の数字に引く蛍光ペン（components/marked-text.tsx）
+   書き始めと書き終わりのインクを濃くして、手で引いた感じを出す */
+.marker {
+  color: var(--foreground);
+  font-weight: 500;
+  background-color: transparent;
+  background-image: linear-gradient(
+    100deg,
+    rgb(253 224 71 / 0) 0%,
+    rgb(253 224 71 / 0.9) 1.5%,
+    rgb(253 224 71 / 0.6) 50%,
+    rgb(253 224 71 / 0.85) 97%,
+    rgb(253 224 71 / 0) 100%
+  );
+  background-repeat: no-repeat;
+  background-position: 0 90%;
+  /* ペンを文字より少しはみ出させつつ、前後の文字との間隔は変えない */
+  padding: 0 0.15em;
+  margin: 0 -0.15em;
+  border-radius: 0.3em 0.15em;
+}
+
 /* Glassmorphism Utilities - ライトモード向けに調整 */
 @layer utilities {
   .glass {

@@ -22,19 +22,19 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       category: "業務効率化 / DataOps / AI活用",
       tags: ["Next.js", "AWS", "Text-to-SQL", "RAG"],
       problem:
-        "アルバイト先の大手予備校のチームでは、大規模なデータの不整合を修正する業務が発生していた一方、データベースを直接閲覧できず、Excelベースでの確認に依存していたため、調査の速度と精度に課題があった。",
+        "所属する大手予備校の過去問データ整備チームでは、大学入試の過去問の配点や正解などをデータベースに登録するマスタ業務を担っている。多くのテーブルのデータをCSVで扱い、データベースを直接操作できない運用だったため、Excelでの作業が常態化していた。プログラムを書けるメンバーは一部で、Pythonでの効率化も業務量に追いついていなかった。",
       role:
-        "フロントエンドからバックエンドまで一貫してSQL-RAGアプリを設計・実装。加えて、データ修正時の判断基準や手順など、担当者の暗黙知をプロンプトと運用ルールとして明文化した。",
+        "チームの統括者として、AIを使ったSQLアプリを発案。試作を作って社員への定例報告の場で提案し、開発から導入研修までを主導した。データ修正時の判断基準や手順など、担当者の暗黙知もプロンプトと運用ルールとして明文化した。",
       implementation:
-        "Next.jsで操作UIを実装し、AWS側でCSV由来テーブルをDB化。自然言語入力をText-to-SQLへ変換して調査可能にし、必要な照会を非エンジニアでも実行できる構成にした（アーキテクチャ図は別途追加予定）。",
+        "Next.jsで画面を作り、AWS上でCSVのデータをデータベース化。自然言語の質問からSQLを生成し、構文をチェックしてから実行する。過去に使われたSQLを検索して生成に活かす（RAG）ハイブリッド構成にし、使うほど意図どおりのSQLが出るようにした。AIの誤りをメンバー自身が見抜けるよう、SQL研修も実施した（構成図は別途追加予定）。",
       result:
-        "SQL知識がないメンバーでもデータ調査を進められる環境を構築し、DBを直接扱わない他チームでも現状把握が可能になった。さらに、修正案のドラフト生成をAIで自動化し、修正作業の手間を減らした。",
+        "Excelでは扱えない規模のデータを処理できるようになり、マスタ業務の工数を減らせた。生成したSQLが蓄積される仕組みで、作業の属人化も解消した。現在は、追加データの作成やバリデーションもAIが自律的に行えるよう機能を広げている。",
       learning:
         "AI導入では速度向上だけでなく、精度保証の設計が本質的に重要だと学んだ。中間表現としてSQLを採用したことで、回答の妥当性確認と運用の再現性を両立できた。",
     },
     {
       id: "picotouch",
-      title: "ピコタッチ（NFCボードゲーム）",
+      title: "アニマル ピコタッチ（NFCボードゲーム）",
       category: "新規事業 / 企画開発 / エンタメ",
       tags: ["Flutter", "GCP", "NFC", "iOS"],
       problem:
@@ -44,7 +44,7 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       implementation:
         "Flutterでゲーム画面を実装し、GCPでバックエンドと履歴管理を構築。NFCならではの物理インタラクションを軸に、短時間でも盛り上がるUI/UXを設計した。",
       result:
-        "2025年12月に幕張メッセ開催のボードゲームマーケットで展示し、海外来場者からファミリー層まで幅広く好評を得た。2026年4月よりAmazonで販売開始予定。",
+        "2025年12月に==幕張メッセ開催のボードゲームマーケットで展示==し、海外来場者からファミリー層まで幅広く好評を得た。現在はAmazonで販売中。",
       learning:
         "既存ゲームのルールに新技術を掛け合わせることで、体験価値は大きく再設計できると実感した。アイデア自体の新規性だけでなく、組み合わせの設計が差別化の鍵になる。",
     },
@@ -60,7 +60,7 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       implementation:
         "登録不要のモバイルWebアプリとしてNext.jsで画面を構築。スマホからルームコード（QRコード）で参加し、参加者が投稿した質問に順番に匿名でYES/NO回答する。質問と投票は利用者から読めないようにし、匿名化した集計結果だけを配信する設計にした。当初のFirebase構成では大人数の一斉回答で書き込みの競合が起きたため、Cloudflare Workers + Durable Objectsへ移行し、ルームごとに処理を1本化。WebSocketで状態を配信し、Turnstileとレート制限で不正利用を防いでいる。利用データはD1にためてBigQueryへ日次転送し、お題の改善に活用している。",
       result:
-        "yesno.cmiru.com で一般公開。99人・10問の負荷試験では、一斉参加・一斉回答で失敗した操作0件・集計の不一致0件を確認し、Firebase版で発生していた競合を解消した。iPhoneのSafari/Chromeでアプリを裏に回して戻しても、自動で最新状態に復帰することも実機で確認した。",
+        "yesno.cmiru.com で一般公開。99人・10問の負荷試験では、一斉参加・一斉回答で==失敗した操作0件・集計の不一致0件==を確認し、Firebase版で発生していた競合を解消した。iPhoneのSafari/Chromeでアプリを裏に回して戻しても、自動で最新状態に復帰することも実機で確認した。",
       learning:
         "リアルタイムの多人数ゲームでは、機能よりも「同時アクセス時に状態が壊れないこと」が体験の土台になると学んだ。負荷試験で問題を定量的に示し、アーキテクチャごと見直す判断の重要性を実感した。",
       url: "https://yesno.cmiru.com",
@@ -77,7 +77,7 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       implementation:
         "FlutterでiOS/Androidアプリを開発。好きな言葉を入れる手動作成、おすすめテーマからの作成、単語群からのランダム生成の3通りでカードをつくれ、3×3〜5×5のサイズやFREEマスも選べる。見つけたマスは写真付きで記録でき、完成したカードは画像として保存できる。Firestoreを使ったリンク共有で友達にカードを送れ、受け取った人はWeb版からも遊べる。Remote Configによる更新案内、GA4による同意ベースの計測、Cloudflare Pagesでのランディングページ（bingo.cmiru.com）も整備した。",
       result:
-        "App StoreとGoogle Playでアプリを公開。ランディングページから各ストアへの導線を用意し、散歩・おでかけ・旅行の場面で気軽に遊べるサービスとして提供している。",
+        "==App StoreとGoogle Playでアプリを公開==。ランディングページから各ストアへの導線を用意し、散歩・おでかけ・旅行の場面で気軽に遊べるサービスとして提供している。",
       learning:
         "「歩く」という日常の行動にビンゴという分かりやすいルールを重ねることで、新しい体験をつくれると学んだ。初めての人でも迷わず遊べるよう、チュートリアルやカード作成の導線設計が重要になる。",
       url: "https://bingo.cmiru.com",
@@ -107,19 +107,19 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       category: "Workflow Automation / DataOps / Applied AI",
       tags: ["Next.js", "AWS", "Text-to-SQL", "RAG"],
       problem:
-        "At a team of a major cram school (part-time role), reconciling inconsistencies in large tables was inefficient because the database could not be accessed directly, forcing investigation through Excel files.",
+        "I work on the past-exam data team at a major cram school, handling the master data work of registering scores, answers, and other details of past university entrance exam questions into a database. The data spanned many tables shared as CSV files, and without direct access to the database, Excel-based work had become the norm. Only some members could write code, and Python scripts could not keep up with the volume of work.",
       role:
-        "Built the SQL-RAG application end-to-end (frontend to backend). Also translated domain tacit knowledge into explicit prompts and operational rules.",
+        "As the team lead, proposed an AI-powered SQL app: built a prototype, pitched it at a regular progress meeting with staff, and led everything from development to onboarding training. Also turned tacit knowledge, such as how to judge and carry out data corrections, into explicit prompts and operational rules.",
       implementation:
-        "Implemented the UI with Next.js and built AWS-side services to convert CSV-held tables into a queryable database. Added a text-to-SQL flow so non-SQL users could investigate data through natural language queries.",
+        "Built the UI with Next.js and turned the CSV data into a database on AWS. Natural-language questions are converted into SQL, syntax-checked, and then executed. A hybrid design retrieves previously used SQL (RAG) to guide generation, so results get closer to what users intend the more the app is used. Also ran SQL training so members can spot AI mistakes themselves (architecture diagram coming soon).",
       result:
-        "Enabled non-SQL members to investigate data confidently and improved cross-team visibility for teams that did not directly use databases. AI-assisted draft generation for correction plans reduced the manual correction work.",
+        "Made data at a scale Excel could not handle workable and reduced the master data workload. Because generated SQL accumulates over time, the work no longer depends on specific individuals. Now extending the app so AI can also create additional data and run validation on its own.",
       learning:
         "In AI-driven efficiency projects, preserving answer quality is as important as speed. Using SQL as an intermediate layer was critical for accuracy and auditability.",
     },
     {
       id: "picotouch",
-      title: "PicoTouch (NFC Board Game)",
+      title: "Animal PicoTouch (NFC Board Game)",
       category: "New Business / Product Planning / Entertainment",
       tags: ["Flutter", "GCP", "NFC", "iOS"],
       problem:
@@ -129,7 +129,7 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       implementation:
         "Developed gameplay with Flutter and built backend/history management on GCP. Focused on tactile, NFC-driven interactions for fast and engaging sessions.",
       result:
-        "Showcased at Board Game Market in Makuhari Messe (Dec 2025), receiving strong traction from both international visitors and families. Planned to launch on Amazon in Apr 2026.",
+        "==Showcased at Board Game Market in Makuhari Messe== (Dec 2025), receiving strong traction from both international visitors and families. Now available on Amazon.",
       learning:
         "Even familiar game mechanics can generate new value when combined with the right technology and interaction design.",
     },
@@ -145,7 +145,7 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       implementation:
         "Built a sign-up-free mobile web app with Next.js. Players join a room with a room code (or QR code) and anonymously answer YES/NO to questions posted by participants in turn. Questions and votes are never readable by clients; only anonymized aggregate results are delivered. Because the initial Firebase setup suffered write contention when many players answered at once, the backend was migrated to Cloudflare Workers + Durable Objects so each room is processed sequentially. State is pushed over WebSocket, abuse is prevented with Turnstile and rate limiting, and usage data is buffered in D1 and exported daily to BigQuery to improve question content.",
       result:
-        "Publicly launched at yesno.cmiru.com. A load test with 99 players and 10 questions showed zero failed operations and zero result mismatches for simultaneous joins and answers, resolving the contention seen in the Firebase version. Also verified on real iPhones (Safari/Chrome) that the app recovers to the latest state automatically after returning from the background.",
+        "Publicly launched at yesno.cmiru.com. A load test with 99 players and 10 questions showed ==zero failed operations and zero result mismatches== for simultaneous joins and answers, resolving the contention seen in the Firebase version. Also verified on real iPhones (Safari/Chrome) that the app recovers to the latest state automatically after returning from the background.",
       learning:
         "In real-time multiplayer games, keeping state consistent under concurrent access is the foundation of the experience. Quantifying the problem through load testing made it possible to justify rethinking the architecture itself.",
       url: "https://yesno.cmiru.com",
@@ -162,7 +162,7 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       implementation:
         "Developed an iOS/Android app with Flutter. Cards can be created in three ways (entering your own words, choosing from recommended themes, or random generation from word sets), with sizes from 3x3 to 5x5 and an optional FREE cell. Found cells can be recorded with photos, and completed cards can be saved as images. Cards can be shared with friends via links backed by Firestore, and recipients can also play on the web. Also set up update prompts with Remote Config, consent-based GA4 tracking, and a landing page on Cloudflare Pages (bingo.cmiru.com).",
       result:
-        "Released on the App Store and Google Play, with a landing page linking to both stores, offered as a casual way to enjoy walks, outings, and trips.",
+        "==Released on the App Store and Google Play==, with a landing page linking to both stores, offered as a casual way to enjoy walks, outings, and trips.",
       learning:
         "Layering a simple, familiar rule like bingo onto an everyday activity like walking can create a new experience. Onboarding, such as tutorials and a clear card-creation flow, is key for first-time users.",
       url: "https://bingo.cmiru.com",
