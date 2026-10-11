@@ -29,8 +29,15 @@ import {
   getPublicationIcon,
   getPublicationTypeLabel,
 } from "@/data/publications";
-import { profileDataByLocale, type Locale } from "@/data/profile";
+import {
+  contactEmail,
+  profileDataByLocale,
+  type Locale,
+} from "@/data/profile";
 import { projectsDataByLocale } from "@/data/projects";
+import { MarkedText } from "@/components/marked-text";
+import { HidingCat } from "@/components/hiding-cat";
+import { EmailContact } from "@/components/email-contact";
 
 const translations = {
   ja: {
@@ -42,7 +49,7 @@ const translations = {
       { name: "Projects", href: "#projects", icon: Code },
     ],
     profileHeadline:
-      "大阪公立大学 情報学研究科 修士1年\n株式会社Cmiru エンジニア",
+      "大阪公立大学 情報学研究科 修士1年\n株式会社Cmiru 共同創業者・エンジニア",
     cmiruProfile: "Cmiru Profile",
     aboutTitle: "About Me",
     interestsTitle: "Interests",
@@ -53,7 +60,7 @@ const translations = {
     projectTitle: "Projects",
     projectStatusOngoing: "進行中",
     projectProblemLabel: "背景課題",
-    projectRoleLabel: "あなたの役割",
+    projectRoleLabel: "担当",
     projectImplementationLabel: "実装",
     projectResultLabel: "結果",
     projectLearningLabel: "学び",
@@ -66,6 +73,11 @@ const translations = {
     readArticle: "記事を読む",
     openMenu: "メニューを開く",
     closeMenu: "メニューを閉じる",
+    email: {
+      copy: "コピー",
+      copied: "コピーしました",
+      hint: "🐾 を @ に置き換えてください",
+    },
   },
   en: {
     nav: [
@@ -76,7 +88,7 @@ const translations = {
       { name: "Projects", href: "#projects", icon: Code },
     ],
     profileHeadline:
-      "M1, Graduate School of Informatics, Osaka Metropolitan University\nEngineer at Cmiru Inc.",
+      "M1, Graduate School of Informatics, Osaka Metropolitan University\nCo-founder & Engineer at Cmiru Inc.",
     cmiruProfile: "Cmiru Profile",
     aboutTitle: "About Me",
     interestsTitle: "Interests",
@@ -101,6 +113,11 @@ const translations = {
     readArticle: "Read Article",
     openMenu: "Open menu",
     closeMenu: "Close menu",
+    email: {
+      copy: "Copy",
+      copied: "Copied",
+      hint: "Replace 🐾 with @",
+    },
   },
 } satisfies Record<
   Locale,
@@ -129,6 +146,7 @@ const translations = {
     readArticle: string;
     openMenu: string;
     closeMenu: string;
+    email: { copy: string; copied: string; hint: string };
   }
 >;
 
@@ -166,7 +184,10 @@ export default function Home() {
               <h1 className="text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl">
                 並崎 功真
               </h1>
-              <p className="mt-4 text-base text-neutral-600 leading-relaxed font-medium whitespace-pre-line">
+              <p className="mt-3 text-lg font-semibold text-neutral-800">
+                {profileData.tagline}
+              </p>
+              <p className="mt-4 text-base text-neutral-600 leading-relaxed font-medium whitespace-pre-line [word-break:auto-phrase]">
                 {t.profileHeadline}
               </p>
               <div className="mt-4 inline-flex rounded-md border border-neutral-200 p-1 bg-white">
@@ -205,6 +226,7 @@ export default function Home() {
               >
                 <Github className="w-4 h-4 mr-2" /> GitHub (@nekomanma91823)
               </a>
+              <EmailContact {...contactEmail} labels={t.email} />
             </div>
 
             {/* ナビゲーション */}
@@ -228,6 +250,7 @@ export default function Home() {
           {/* ========== About セクション ========== */}
           <motion.section
             id="about"
+            data-cat-topic="about"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -273,6 +296,7 @@ export default function Home() {
           {/* ========== Career セクション ========== */}
           <motion.section
             id="career"
+            data-cat-topic="career"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -293,6 +317,12 @@ export default function Home() {
                     {item.current && (
                       <span className="block text-xs font-medium text-blue-500 font-mono mt-0.5">
                         Present
+                      </span>
+                    )}
+                    {item.end && (
+                      <span className="block text-xs text-neutral-400 font-mono mt-0.5">
+                        – {item.end.year}.
+                        {item.end.month.toString().padStart(2, "0")}
                       </span>
                     )}
                   </div>
@@ -317,6 +347,7 @@ export default function Home() {
           {/* ========== Publications & Awards セクション ========== */}
           <motion.section
             id="publications"
+            data-cat-topic="publications"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -380,6 +411,7 @@ export default function Home() {
           {/* ========== Articles セクション ========== */}
           <motion.section
             id="articles"
+            data-cat-topic="articles"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -438,6 +470,7 @@ export default function Home() {
               {projectsData.map((project) => (
                 <Card
                   key={project.id}
+                  data-cat-topic={project.id}
                   className="hover:border-neutral-300 transition-colors shadow-sm"
                 >
                   <CardHeader>
@@ -466,7 +499,7 @@ export default function Home() {
                         {t.projectProblemLabel}
                       </h3>
                       <p className="text-sm text-neutral-600 leading-relaxed">
-                        {project.problem}
+                        <MarkedText text={project.problem} />
                       </p>
                     </div>
 
@@ -475,7 +508,7 @@ export default function Home() {
                         {t.projectRoleLabel}
                       </h3>
                       <p className="text-sm text-neutral-600 leading-relaxed">
-                        {project.role}
+                        <MarkedText text={project.role} />
                       </p>
                     </div>
 
@@ -484,7 +517,7 @@ export default function Home() {
                         {t.projectImplementationLabel}
                       </h3>
                       <p className="text-sm text-neutral-600 leading-relaxed">
-                        {project.implementation}
+                        <MarkedText text={project.implementation} />
                       </p>
                     </div>
 
@@ -493,7 +526,7 @@ export default function Home() {
                         {t.projectResultLabel}
                       </h3>
                       <p className="text-sm text-neutral-600 leading-relaxed">
-                        {project.result}
+                        <MarkedText text={project.result} />
                       </p>
                     </div>
 
@@ -502,7 +535,7 @@ export default function Home() {
                         {t.projectLearningLabel}
                       </h3>
                       <p className="text-sm text-neutral-600 leading-relaxed">
-                        {project.learning}
+                        <MarkedText text={project.learning} />
                       </p>
                     </div>
                   </CardContent>
@@ -519,13 +552,23 @@ export default function Home() {
           </motion.section>
 
           {/* ================= Footer ================= */}
-          <footer className="pt-24 pb-8 border-t border-neutral-200 text-center text-sm text-neutral-500">
+          <footer
+            data-cat-topic="footer"
+            className="pt-24 pb-8 border-t border-neutral-200 text-center text-sm text-neutral-500"
+          >
             <p>
               © {new Date().getFullYear()} Takuma Namisaki. All rights reserved.
             </p>
           </footer>
         </main>
       </div>
+
+      {/* ================= 右上に隠れている猫 ================= */}
+      {/* PCでは右カラムの右端にそろえる */}
+      <HidingCat
+        locale={locale}
+        className="fixed top-0 z-30 right-[calc(max(0px,(100vw_-_72rem)_/_2)_+_1.5rem)]"
+      />
 
       {/* ================= モバイル向け フローティング・ハンバーガーメニュー ================= */}
       <button
