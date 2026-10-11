@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { SiteShell } from "@/components/site-shell";
+import { LocaleProvider } from "@/lib/locale";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,7 +30,9 @@ export default function RootLayout({
         className={`${inter.variable} ${geistMono.variable} antialiased selection:bg-blue-500/30 selection:text-blue-200`}
       >
         <div className="relative min-h-screen">
-          {children}
+          <LocaleProvider>
+            <SiteShell>{children}</SiteShell>
+          </LocaleProvider>
         </div>
       </body>
     </html>
