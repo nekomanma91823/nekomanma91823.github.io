@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { uiTextByLocale } from "@/data/ui-text";
@@ -68,7 +69,7 @@ export function MobileMenu() {
 
               <nav className="flex flex-col items-center justify-center flex-1 gap-8">
                 {t.nav.map((link) => (
-                  <a
+                  <Link
                     key={link.name}
                     href={link.href}
                     onClick={() => setIsOpen(false)}
@@ -79,7 +80,7 @@ export function MobileMenu() {
                       {link.name}
                     </div>
                     <span className="h-0.5 w-0 bg-neutral-900 group-hover:w-full transition-all duration-300 mt-2"></span>
-                  </a>
+                  </Link>
                 ))}
               </nav>
             </div>
