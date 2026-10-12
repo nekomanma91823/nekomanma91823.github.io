@@ -30,6 +30,11 @@ export interface UiText {
   projectImplementationLabel: string;
   projectResultLabel: string;
   projectLearningLabel: string;
+  projectTechLabel: string;
+  projectMore: string;
+  backToProjects: string;
+  projectPrev: string;
+  projectNext: string;
   publicationLinkFallback: string;
   articleSource: string;
   articleDate: string;
@@ -42,12 +47,12 @@ export interface UiText {
 }
 
 const nav: UiText["nav"] = [
-  { name: "About", href: "#about", icon: User },
-  { name: "Research", href: "#research", icon: FlaskConical },
-  { name: "Career", href: "#career", icon: Briefcase },
-  { name: "Publications", href: "#publications", icon: Award },
-  { name: "Articles", href: "#articles", icon: Newspaper },
-  { name: "Projects", href: "#projects", icon: Code },
+  { name: "About", href: "/#about", icon: User },
+  { name: "Research", href: "/#research", icon: FlaskConical },
+  { name: "Career", href: "/#career", icon: Briefcase },
+  { name: "Publications", href: "/#publications", icon: Award },
+  { name: "Articles", href: "/#articles", icon: Newspaper },
+  { name: "Projects", href: "/#projects", icon: Code },
 ];
 
 export const uiTextByLocale: Record<Locale, UiText> = {
@@ -71,6 +76,11 @@ export const uiTextByLocale: Record<Locale, UiText> = {
     projectImplementationLabel: "実装",
     projectResultLabel: "結果",
     projectLearningLabel: "学び",
+    projectTechLabel: "使った技術",
+    projectMore: "詳しく見る",
+    backToProjects: "Projects 一覧に戻る",
+    projectPrev: "前のプロジェクト",
+    projectNext: "次のプロジェクト",
     publicationLinkFallback: "リンク",
     articleSource: "Cmiru Blog",
     articleDate: "2025.10",
@@ -106,6 +116,11 @@ export const uiTextByLocale: Record<Locale, UiText> = {
     projectImplementationLabel: "Implementation",
     projectResultLabel: "Result",
     projectLearningLabel: "Learning",
+    projectTechLabel: "Tech Stack",
+    projectMore: "Details",
+    backToProjects: "Back to Projects",
+    projectPrev: "Previous project",
+    projectNext: "Next project",
     publicationLinkFallback: "Link",
     articleSource: "Cmiru Blog",
     articleDate: "2025.10",
