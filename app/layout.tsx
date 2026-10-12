@@ -15,7 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Takuma | Portfolio",
+  // 詳細ページでは「プロジェクト名 | Takuma | Portfolio」になる
+  title: { default: "Takuma | Portfolio", template: "%s | Takuma | Portfolio" },
   description: "Portfolio of Takuma Namisaki, Graduate Student at Osaka Metropolitan University",
 };
 
@@ -25,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className="scroll-smooth">
+    <html lang="ja" className="scroll-smooth" data-scroll-behavior="smooth">
       <body
         className={`${inter.variable} ${geistMono.variable} antialiased selection:bg-blue-500/30 selection:text-blue-200`}
       >

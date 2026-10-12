@@ -2,6 +2,10 @@ export interface ProjectItem {
   id: string;
   title: string;
   category: string;
+  // 一覧のカードに出す、ひとことの説明
+  summary: string;
+  // 一覧のカードで目立たせる成果。==…== で囲むと蛍光ペンが引かれる
+  highlight?: string;
   tags: string[];
   problem: string;
   role: string;
@@ -20,6 +24,9 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       id: "sql-rag-agent",
       title: "SQL-RAG Agent",
       category: "業務効率化 / DataOps / AI活用",
+      summary:
+        "日本語で質問すると、AIがSQLを作ってデータベースを検索する、チーム向けの業務アプリ。",
+      highlight: "==4月のマスタ業務の工数を前年比10%削減==",
       tags: ["Next.js", "AWS", "Text-to-SQL", "RAG"],
       problem:
         "東進ハイスクールの教務研究員として所属する、大学入試の過去問を整備するチームでは、過去問の配点や正解などをデータベースに登録するマスタ業務を担っている。100以上のテーブルのデータをCSVで扱い、データベースを直接操作できない運用だったため、Excelでの作業が常態化していた。プログラムを書けるメンバーは一部で、Pythonでの効率化も業務量に追いついていなかった。",
@@ -36,6 +43,9 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       id: "picotouch",
       title: "アニマル ピコタッチ（NFCボードゲーム）",
       category: "新規事業 / 企画開発 / エンタメ",
+      summary:
+        "NFCカードをタッチして遊ぶ、家族向けのHit&Blow形式のボードゲーム。iOSアプリと連動する。",
+      highlight: "==ボードゲームマーケット（幕張メッセ）で展示==、Amazonで販売中",
       tags: ["Flutter", "GCP", "NFC", "iOS"],
       problem:
         "役員として経営に携わるシーみるにおいて、取引先企業がNFCカードの販売拡大に課題を抱えていた。既存のNFC名刺などはビジネス層中心で、利用シーンの広がりに限界があった。",
@@ -52,6 +62,9 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       id: "yes-or-no",
       title: "YES or NO（匿名YES/NOパーティーゲーム）",
       category: "Webサービス / リアルタイム通信 / エンタメ",
+      summary:
+        "その場で出し合った質問に、スマホから匿名でYES/NOを答えるパーティーゲーム。登録なしで遊べる。",
+      highlight: "99人の一斉回答で==失敗した操作0件・集計の不一致0件==",
       tags: ["Next.js", "Cloudflare Workers", "Durable Objects", "WebSocket", "BigQuery"],
       problem:
         "飲み会や学校・職場のアイスブレイクでは、本音を聞きたくても人前では答えにくい質問がある。一方、既存の匿名アンケートツールは事前準備が必要で、その場で質問を出し合って盛り上がる用途には向いていなかった。",
@@ -69,6 +82,9 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       id: "machinaka-bingo",
       title: "街なかビンゴ（街歩きビンゴアプリ）",
       category: "モバイルアプリ / 企画開発 / 地域・おでかけ",
+      summary:
+        "街で見つけたものでマスを埋めていく、散歩やおでかけ向けのビンゴアプリ。",
+      highlight: "==App StoreとGoogle Playで公開==",
       tags: ["Flutter", "Firebase", "iOS", "Android"],
       problem:
         "散歩やおでかけ、旅行先のまち歩きは、目的がないと単調になりがちで、いつもの道の新しい発見に気づきにくい。既存のビンゴアプリは抽選型のゲームが中心で、街歩きと組み合わせて遊べるものは少なかった。",
@@ -82,29 +98,15 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
         "「歩く」という日常の行動にビンゴという分かりやすいルールを重ねることで、新しい体験をつくれると学んだ。初めての人でも迷わず遊べるよう、チュートリアルやカード作成の導線設計が重要になる。",
       url: "https://bingo.cmiru.com",
     },
-    {
-      id: "ml-learning-site",
-      title: "機械学習を学ぶWebサイト（進行中）",
-      category: "EdTech / ナレッジ基盤 / 個人開発",
-      tags: ["Next.js", "Supabase", "教育コンテンツ"],
-      problem:
-        "機械学習を初学者から中級者まで一貫して学べる、体系的かつ日本語で使いやすい学習サイトが不足している。",
-      role:
-        "学習項目を一覧で見渡せる情報設計と、理解度に応じて進められる学習導線の設計・実装を担当。",
-      implementation:
-        "Next.jsでフロントエンドを構築し、Supabaseでコンテンツと進捗データを管理。検索性・可読性・継続学習を重視したUIを設計している。",
-      result:
-        "主要ページとコンテンツ管理基盤の初期実装を完了し、公開版に向けて機能検証と教材拡充を進行中。",
-      learning:
-        "教育プロダクトでは、内容の正確性だけでなく、途中離脱を防ぐ情報設計と導線設計が成果を左右することを学んでいる。",
-      status: "ongoing",
-    },
   ],
   en: [
     {
       id: "sql-rag-agent",
       title: "SQL-RAG Agent",
       category: "Workflow Automation / DataOps / Applied AI",
+      summary:
+        "A team app where AI turns plain-language questions into SQL and searches the database.",
+      highlight: "==Cut the April master data workload by 10% year over year==",
       tags: ["Next.js", "AWS", "Text-to-SQL", "RAG"],
       problem:
         "As a part-time teaching materials staff member at Toshin High School, I work on a team that maintains past university entrance exam questions, including the master data work of registering scores, answers, and other details into a database. The data spanned more than 100 tables shared as CSV files, and without direct access to the database, Excel-based work had become the norm. Only some members could write code, and Python scripts could not keep up with the volume of work.",
@@ -121,6 +123,10 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       id: "picotouch",
       title: "Animal PicoTouch (NFC Board Game)",
       category: "New Business / Product Planning / Entertainment",
+      summary:
+        "A family Hit&Blow-style board game played by tapping NFC cards, linked with an iOS app.",
+      highlight:
+        "==Showcased at Board Game Market (Makuhari Messe)==; now available on Amazon",
       tags: ["Flutter", "GCP", "NFC", "iOS"],
       problem:
         "A partner company was struggling to expand NFC card sales beyond business-oriented use cases such as digital name cards.",
@@ -137,6 +143,10 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       id: "yes-or-no",
       title: "YES or NO (Anonymous Yes/No Party Game)",
       category: "Web Service / Real-time Communication / Entertainment",
+      summary:
+        "A party game where everyone answers on-the-spot questions with an anonymous YES or NO from their phone, with no sign-up needed.",
+      highlight:
+        "==Zero failed operations and zero result mismatches== with 99 players answering at once",
       tags: ["Next.js", "Cloudflare Workers", "Durable Objects", "WebSocket", "BigQuery"],
       problem:
         "At parties or icebreakers at school and work, some questions are hard to answer honestly in front of others. Existing anonymous survey tools require advance setup and are not designed for asking questions on the spot and enjoying the results together.",
@@ -154,6 +164,9 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       id: "machinaka-bingo",
       title: "Machinaka Bingo (Town-Walking Bingo App)",
       category: "Mobile App / Product Planning / Local & Outings",
+      summary:
+        "A bingo app for walks and outings: fill in the squares with things you find around town.",
+      highlight: "==Released on the App Store and Google Play==",
       tags: ["Flutter", "Firebase", "iOS", "Android"],
       problem:
         "Walks, outings, and sightseeing strolls can feel monotonous without a goal, making it easy to miss new discoveries on familiar streets. Most bingo apps are draw-based games, and few are designed to be played while walking around town.",
@@ -166,23 +179,6 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       learning:
         "Layering a simple, familiar rule like bingo onto an everyday activity like walking can create a new experience. Onboarding, such as tutorials and a clear card-creation flow, is key for first-time users.",
       url: "https://bingo.cmiru.com",
-    },
-    {
-      id: "ml-learning-site",
-      title: "Web Platform for Learning Machine Learning (In Progress)",
-      category: "EdTech / Knowledge Platform / Personal Project",
-      tags: ["Next.js", "Supabase", "Learning Content"],
-      problem:
-        "There are limited platforms that provide structured, end-to-end learning paths for machine learning in an accessible format.",
-      role:
-        "Designing and building an overview-first learning website with clear progression paths by learner level.",
-      implementation:
-        "Building the frontend with Next.js and managing content/progress with Supabase, with emphasis on readability, searchability, and retention.",
-      result:
-        "Core pages and content management foundation are implemented; currently iterating toward a public release.",
-      learning:
-        "For education products, information architecture and learning flow matter as much as content correctness.",
-      status: "ongoing",
     },
   ],
 };

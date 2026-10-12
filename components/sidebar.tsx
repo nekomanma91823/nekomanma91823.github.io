@@ -1,20 +1,27 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ExternalLink, Github, MapPin } from "lucide-react";
 import { EmailContact } from "@/components/email-contact";
 import { contactEmail, profileDataByLocale } from "@/data/profile";
 import { uiTextByLocale } from "@/data/ui-text";
 import { useLocale } from "@/lib/locale";
+import { cn } from "@/lib/utils";
 
 // ================= サイドバー (左カラム) =================
-export function Sidebar() {
+export function Sidebar({ className }: { className?: string }) {
   const { locale, setLocale } = useLocale();
   const t = uiTextByLocale[locale];
   const profileData = profileDataByLocale[locale];
 
   return (
-    <aside className="lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto px-6 py-12 lg:py-24 border-b lg:border-b-0 lg:border-r border-neutral-200 bg-zinc-50 z-10">
+    <aside
+      className={cn(
+        "lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto px-6 py-12 lg:py-24 border-b lg:border-b-0 lg:border-r border-neutral-200 bg-zinc-50 z-10",
+        className,
+      )}
+    >
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -70,17 +77,17 @@ export function Sidebar() {
           <EmailContact {...contactEmail} labels={t.email} />
         </div>
 
-        {/* ナビゲーション */}
+        {/* ナビゲーション（詳細ページからでも、トップの各項目へ移動する） */}
         <nav className="mt-8 flex flex-col gap-4">
           {t.nav.map((link) => (
-            <a
+            <Link
               key={link.name}
               href={link.href}
               className="group flex items-center text-sm font-medium text-neutral-500 hover:text-neutral-900 transition-colors w-fit"
             >
               <span className="w-8 h-px bg-neutral-300 mr-4 group-hover:w-12 group-hover:bg-neutral-900 transition-all duration-300"></span>
               {link.name}
-            </a>
+            </Link>
           ))}
         </nav>
       </motion.div>
