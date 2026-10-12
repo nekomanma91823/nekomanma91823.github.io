@@ -14,7 +14,6 @@ export const catLinesByLocale: Record<Locale, Record<string, string>> = {
     picotouch: "NFCカードをタッチして遊ぶボードゲームなんだって",
     "yes-or-no": "99人で一斉に押しても壊れなかったって",
     "machinaka-bingo": "散歩がちょっと楽しくなるビンゴらしい",
-    "ml-learning-site": "これはまだ作ってる途中なんだって",
     footer: "最後まで読んでくれてありがとう",
   },
   en: {
@@ -27,7 +26,6 @@ export const catLinesByLocale: Record<Locale, Record<string, string>> = {
     picotouch: "A board game you play by tapping NFC cards.",
     "yes-or-no": "99 players at once, and nothing broke.",
     "machinaka-bingo": "Bingo that makes a walk a little more fun.",
-    "ml-learning-site": "Still being built, apparently.",
     footer: "Thanks for reading all the way.",
   },
 };

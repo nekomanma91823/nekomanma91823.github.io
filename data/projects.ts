@@ -98,25 +98,6 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
         "「歩く」という日常の行動にビンゴという分かりやすいルールを重ねることで、新しい体験をつくれると学んだ。初めての人でも迷わず遊べるよう、チュートリアルやカード作成の導線設計が重要になる。",
       url: "https://bingo.cmiru.com",
     },
-    {
-      id: "ml-learning-site",
-      title: "機械学習を学ぶWebサイト",
-      category: "EdTech / ナレッジ基盤 / 個人開発",
-      summary:
-        "機械学習を、初学者から中級者まで日本語で順を追って学べる学習サイト。",
-      tags: ["Next.js", "Supabase", "教育コンテンツ"],
-      problem:
-        "機械学習を初学者から中級者まで一貫して学べる、体系的かつ日本語で使いやすい学習サイトが不足している。",
-      role:
-        "学習項目を一覧で見渡せる情報設計と、理解度に応じて進められる学習導線の設計・実装を担当。",
-      implementation:
-        "Next.jsでフロントエンドを構築し、Supabaseでコンテンツと進捗データを管理。検索性・可読性・継続学習を重視したUIを設計している。",
-      result:
-        "主要ページとコンテンツ管理基盤の初期実装を完了し、公開版に向けて機能検証と教材拡充を進行中。",
-      learning:
-        "教育プロダクトでは、内容の正確性だけでなく、途中離脱を防ぐ情報設計と導線設計が成果を左右することを学んでいる。",
-      status: "ongoing",
-    },
   ],
   en: [
     {
@@ -198,25 +179,6 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       learning:
         "Layering a simple, familiar rule like bingo onto an everyday activity like walking can create a new experience. Onboarding, such as tutorials and a clear card-creation flow, is key for first-time users.",
       url: "https://bingo.cmiru.com",
-    },
-    {
-      id: "ml-learning-site",
-      title: "Web Platform for Learning Machine Learning",
-      category: "EdTech / Knowledge Platform / Personal Project",
-      summary:
-        "A site for learning machine learning step by step in Japanese, from beginner to intermediate.",
-      tags: ["Next.js", "Supabase", "Learning Content"],
-      problem:
-        "There are limited platforms that provide structured, end-to-end learning paths for machine learning in an accessible format.",
-      role:
-        "Designing and building an overview-first learning website with clear progression paths by learner level.",
-      implementation:
-        "Building the frontend with Next.js and managing content/progress with Supabase, with emphasis on readability, searchability, and retention.",
-      result:
-        "Core pages and content management foundation are implemented; currently iterating toward a public release.",
-      learning:
-        "For education products, information architecture and learning flow matter as much as content correctness.",
-      status: "ongoing",
     },
   ],
 };
