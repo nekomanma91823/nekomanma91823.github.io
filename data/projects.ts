@@ -6,6 +6,8 @@ export interface ProjectItem {
   summary: string;
   // 一覧のカードで目立たせる成果。==…== で囲むと蛍光ペンが引かれる
   highlight?: string;
+  // 一覧のカードの上に出す画像（1200:630 にそろえて public/images/projects/ に置く）。ないときは薄いアイコンだけの枠になる
+  image?: { src: string; alt: string };
   tags: string[];
   problem: string;
   role: string;
@@ -46,6 +48,10 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       summary:
         "NFCカードをタッチして遊ぶ、家族向けのHit&Blow形式のボードゲーム。iOSアプリと連動する。",
       highlight: "==ボードゲームマーケット（幕張メッセ）で展示==、Amazonで販売中",
+      image: {
+        src: "/images/projects/picotouch.webp",
+        alt: "アニマル ピコタッチのロゴと、動物が描かれたカード",
+      },
       tags: ["Flutter", "GCP", "NFC", "iOS"],
       problem:
         "役員として経営に携わるシーみるにおいて、取引先企業がNFCカードの販売拡大に課題を抱えていた。既存のNFC名刺などはビジネス層中心で、利用シーンの広がりに限界があった。",
@@ -65,6 +71,7 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       summary:
         "その場で出し合った質問に、スマホから匿名でYES/NOを答えるパーティーゲーム。登録なしで遊べる。",
       highlight: "99人の一斉回答で==失敗した操作0件・集計の不一致0件==",
+      image: { src: "/images/projects/yes-or-no.webp", alt: "YES or NO のロゴ" },
       tags: ["Next.js", "Cloudflare Workers", "Durable Objects", "WebSocket", "BigQuery"],
       problem:
         "飲み会や学校・職場のアイスブレイクでは、本音を聞きたくても人前では答えにくい質問がある。一方、既存の匿名アンケートツールは事前準備が必要で、その場で質問を出し合って盛り上がる用途には向いていなかった。",
@@ -85,6 +92,10 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       summary:
         "街で見つけたものでマスを埋めていく、散歩やおでかけ向けのビンゴアプリ。",
       highlight: "==App StoreとGoogle Playで公開==",
+      image: {
+        src: "/images/projects/machinaka-bingo.webp",
+        alt: "街なかビンゴのアプリ画面と、街並みのイラスト",
+      },
       tags: ["Flutter", "Firebase", "iOS", "Android"],
       problem:
         "散歩やおでかけ、旅行先のまち歩きは、目的がないと単調になりがちで、いつもの道の新しい発見に気づきにくい。既存のビンゴアプリは抽選型のゲームが中心で、街歩きと組み合わせて遊べるものは少なかった。",
@@ -127,6 +138,10 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
         "A family Hit&Blow-style board game played by tapping NFC cards, linked with an iOS app.",
       highlight:
         "==Showcased at Board Game Market (Makuhari Messe)==; now available on Amazon",
+      image: {
+        src: "/images/projects/picotouch.webp",
+        alt: "The Animal PicoTouch logo and illustrated animal cards",
+      },
       tags: ["Flutter", "GCP", "NFC", "iOS"],
       problem:
         "A partner company was struggling to expand NFC card sales beyond business-oriented use cases such as digital name cards.",
@@ -147,6 +162,7 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
         "A party game where everyone answers on-the-spot questions with an anonymous YES or NO from their phone, with no sign-up needed.",
       highlight:
         "==Zero failed operations and zero result mismatches== with 99 players answering at once",
+      image: { src: "/images/projects/yes-or-no.webp", alt: "The YES or NO logo" },
       tags: ["Next.js", "Cloudflare Workers", "Durable Objects", "WebSocket", "BigQuery"],
       problem:
         "At parties or icebreakers at school and work, some questions are hard to answer honestly in front of others. Existing anonymous survey tools require advance setup and are not designed for asking questions on the spot and enjoying the results together.",
@@ -167,6 +183,10 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       summary:
         "A bingo app for walks and outings: fill in the squares with things you find around town.",
       highlight: "==Released on the App Store and Google Play==",
+      image: {
+        src: "/images/projects/machinaka-bingo.webp",
+        alt: "The Machinaka Bingo app screen with an illustrated townscape",
+      },
       tags: ["Flutter", "Firebase", "iOS", "Android"],
       problem:
         "Walks, outings, and sightseeing strolls can feel monotonous without a goal, making it easy to miss new discoveries on familiar streets. Most bingo apps are draw-based games, and few are designed to be played while walking around town.",
