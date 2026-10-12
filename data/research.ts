@@ -4,7 +4,7 @@ export interface ResearchItem {
   title: string;
   description: string;
   // 発表や掲載などの成果。==…== で囲むと蛍光ペンが引かれる
-  outcomes?: string[];
+  outcomes?: Array<{ text: string; link?: string; linkText?: string }>;
   current?: boolean;
 }
 
@@ -34,8 +34,12 @@ export const researchDataByLocale: Record<Locale, ResearchData> = {
         title: "LLMの複雑な推論",
         description: "大規模言語モデルの複雑な推論について研究しました。",
         outcomes: [
-          "国際会議 ICICIC2025 で論文発表",
-          "==論文誌 ICIC Express Letters に掲載==",
+          { text: "国際会議 ICICIC2025 で論文発表" },
+          {
+            text: "==論文誌 ICIC Express Letters に掲載==",
+            link: "https://doi.org/10.24507/icicel.20.10.1103",
+            linkText: "論文",
+          },
         ],
       },
     ],
@@ -57,8 +61,12 @@ export const researchDataByLocale: Record<Locale, ResearchData> = {
         title: "Complex reasoning in LLMs",
         description: "Studied complex reasoning in large language models.",
         outcomes: [
-          "Presented a paper at ICICIC2025 (international conference)",
-          "==Published in ICIC Express Letters (journal)==",
+          { text: "Presented a paper at ICICIC2025 (international conference)" },
+          {
+            text: "==Published in ICIC Express Letters (journal)==",
+            link: "https://doi.org/10.24507/icicel.20.10.1103",
+            linkText: "Paper",
+          },
         ],
       },
     ],
