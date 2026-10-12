@@ -1,5 +1,6 @@
 "use client";
 
+import { Fragment } from "react";
 import { ExternalLink } from "lucide-react";
 import { RevealSection } from "@/components/sections/reveal-section";
 import { Card, CardContent } from "@/components/ui/card";
@@ -7,6 +8,7 @@ import {
   getPublicationIcon,
   getPublicationTypeLabel,
   publicationsDataByLocale,
+  selfAuthorName,
 } from "@/data/publications";
 import { uiTextByLocale } from "@/data/ui-text";
 import { useLocale } from "@/lib/locale";
@@ -48,6 +50,32 @@ export function PublicationsSection() {
                 <h3 className="text-lg font-medium text-neutral-900 leading-snug">
                   {pub.title}
                 </h3>
+                {pub.paperTitle && (
+                  <p className="text-sm text-neutral-700 mt-2">
+                    “{pub.paperTitle}”
+                  </p>
+                )}
+                {pub.authors && (
+                  <p className="text-sm text-neutral-600 mt-2">
+                    {pub.authors.map((author, i) => (
+                      <Fragment key={author}>
+                        {i > 0 && ", "}
+                        {author === selfAuthorName ? (
+                          <strong className="font-semibold text-neutral-900">
+                            {author}
+                          </strong>
+                        ) : (
+                          author
+                        )}
+                      </Fragment>
+                    ))}
+                  </p>
+                )}
+                {pub.venue && (
+                  <p className="text-sm text-neutral-500 mt-1 text-balance">
+                    {pub.venue}
+                  </p>
+                )}
                 {pub.description && (
                   <p className="text-sm text-neutral-600 mt-2">
                     {pub.description}
