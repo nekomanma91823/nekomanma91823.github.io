@@ -9,7 +9,9 @@ export interface ProjectItem {
   // 一覧のカードの上に出す画像（1200:630 にそろえて public/images/projects/ に置く）。ないときは薄いアイコンだけの枠になる
   image?: { src: string; alt: string };
   tags: string[];
-  problem: string;
+  // 始まり方。課題から始まったものは「背景課題」、人の声から始まったものは「きっかけ」という見出しになる
+  originKind: "problem" | "trigger";
+  origin: string;
   role: string;
   implementation: string;
   result: string;
@@ -30,7 +32,8 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
         "日本語で質問すると、AIがSQLを作ってデータベースを検索する、チーム向けの業務アプリ。",
       highlight: "==4月のマスタ業務の工数を前年比10%削減==",
       tags: ["Next.js", "AWS", "Text-to-SQL", "RAG"],
-      problem:
+      originKind: "problem",
+      origin:
         "東進ハイスクールの教務研究員として所属する、大学入試の過去問を整備するチームでは、過去問の配点や正解などをデータベースに登録するマスタ業務を担っている。100以上のテーブルのデータをCSVで扱い、データベースを直接操作できない運用だったため、Excelでの作業が常態化していた。プログラムを書けるメンバーは一部で、Pythonでの効率化も業務量に追いついていなかった。",
       role:
         "チームの統括者として、AIを使ったSQLアプリを発案。試作を作って社員への定例報告の場で提案し、開発から導入研修までを主導した。データ修正時の判断基準や手順など、担当者の暗黙知もプロンプトと運用ルールとして明文化した。",
@@ -53,8 +56,9 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
         alt: "アニマル ピコタッチのロゴと、動物が描かれたカード",
       },
       tags: ["Flutter", "GCP", "NFC", "iOS"],
-      problem:
-        "役員として経営に携わるシーみるにおいて、取引先企業がNFCカードの販売拡大に課題を抱えていた。既存のNFC名刺などはビジネス層中心で、利用シーンの広がりに限界があった。",
+      originKind: "problem",
+      origin:
+        "役員として経営に携わるシーみるに、取引先企業から、NFCカードの販売を広げたいという相談があった。既存のNFC名刺などはビジネス層向けが中心で、使われる場面が限られていた。私たちも自分たちのゲームを作ってみたいと考えていたため、NFCカードで遊ぶゲームとして形にすることにした。",
       role:
         "ターゲットをファミリー層へ拡張する方針を立案し、NFCカードを活用したHit&Blow形式のボードゲームを企画。iOSアプリでゲーム体験、Webで履歴閲覧という役割分担を設計した。",
       implementation:
@@ -73,8 +77,9 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       highlight: "99人の一斉回答で==失敗した操作0件・集計の不一致0件==",
       image: { src: "/images/projects/yes-or-no.webp", alt: "YES or NO のロゴ" },
       tags: ["Next.js", "Cloudflare Workers", "Durable Objects", "WebSocket", "BigQuery"],
-      problem:
-        "飲み会や学校・職場のアイスブレイクでは、本音を聞きたくても人前では答えにくい質問がある。一方、既存の匿名アンケートツールは事前準備が必要で、その場で質問を出し合って盛り上がる用途には向いていなかった。",
+      originKind: "trigger",
+      origin:
+        "友人から、みんなで集まる場で遊べるゲームがほしいという声を聞いたのが始まり。飲み会や学校・職場のアイスブレイクでは、本音を聞きたくても人前では答えにくい質問がある。既存の匿名アンケートツールは事前準備が必要で、その場で質問を出し合って盛り上がる用途には向いていなかったため、登録なしですぐに遊べるゲームとして作ることにした。",
       role:
         "株式会社シーみるのプロダクトとして、開発メンバーとともにサービスの方向性を検討。バックエンドのCloudflare移行や本番切り替え、プライバシーポリシー改定などのプルリクエストをレビューし、リリース判断を担当した。",
       implementation:
@@ -97,8 +102,9 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
         alt: "街なかビンゴのアプリ画面と、街並みのイラスト",
       },
       tags: ["Flutter", "Firebase", "iOS", "Android"],
-      problem:
-        "散歩やおでかけ、旅行先のまち歩きは、目的がないと単調になりがちで、いつもの道の新しい発見に気づきにくい。既存のビンゴアプリは抽選型のゲームが中心で、街歩きと組み合わせて遊べるものは少なかった。",
+      originKind: "trigger",
+      origin:
+        "友人たちは普段から、街で見つけたものでマスを埋めていく手作りのビンゴで遊んでいた。その友人たちから、この遊びのアプリがほしいという声があり、アプリにすることにした。既存のビンゴアプリは抽選型のゲームが中心で、街歩きと組み合わせて遊べるものは少なかった。",
       role:
         "株式会社シーみるのプロダクトとして、開発メンバーとともに企画・サービス設計に関わった。",
       implementation:
@@ -119,7 +125,8 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
         "A team app where AI turns plain-language questions into SQL and searches the database.",
       highlight: "==Cut the April master data workload by 10% year over year==",
       tags: ["Next.js", "AWS", "Text-to-SQL", "RAG"],
-      problem:
+      originKind: "problem",
+      origin:
         "As a part-time teaching materials staff member at Toshin High School, I work on a team that maintains past university entrance exam questions, including the master data work of registering scores, answers, and other details into a database. The data spanned more than 100 tables shared as CSV files, and without direct access to the database, Excel-based work had become the norm. Only some members could write code, and Python scripts could not keep up with the volume of work.",
       role:
         "As the team lead, proposed an AI-powered SQL app: built a prototype, pitched it at a regular progress meeting with staff, and led everything from development to onboarding training. Also turned tacit knowledge, such as how to judge and carry out data corrections, into explicit prompts and operational rules.",
@@ -143,8 +150,9 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
         alt: "The Animal PicoTouch logo and illustrated animal cards",
       },
       tags: ["Flutter", "GCP", "NFC", "iOS"],
-      problem:
-        "A partner company was struggling to expand NFC card sales beyond business-oriented use cases such as digital name cards.",
+      originKind: "problem",
+      origin:
+        "CMIRU, where I serve as an executive, was approached by a partner company that wanted to expand sales of its NFC cards. Existing products such as NFC business cards mainly targeted business users, which limited where the cards were used. Since our team had also wanted to make a game of our own, we decided to build one played with NFC cards.",
       role:
         "Proposed a family-focused direction and planned a Hit&Blow-style board game using NFC cards. Designed the experience split between an iOS gameplay app and a web-based history view.",
       implementation:
@@ -164,8 +172,9 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
         "==Zero failed operations and zero result mismatches== with 99 players answering at once",
       image: { src: "/images/projects/yes-or-no.webp", alt: "The YES or NO logo" },
       tags: ["Next.js", "Cloudflare Workers", "Durable Objects", "WebSocket", "BigQuery"],
-      problem:
-        "At parties or icebreakers at school and work, some questions are hard to answer honestly in front of others. Existing anonymous survey tools require advance setup and are not designed for asking questions on the spot and enjoying the results together.",
+      originKind: "trigger",
+      origin:
+        "It started when a friend told us they wanted a game to play when everyone gets together. At parties or icebreakers at school and work, some questions are hard to answer honestly in front of others. Existing anonymous survey tools require advance setup and are not designed for asking questions on the spot and enjoying the results together, so we built a game anyone can play right away without signing up.",
       role:
         "As a CMIRU product, worked with the development team on the service direction. Reviewed pull requests for the backend migration to Cloudflare, the production cutover, and the privacy policy revision, and made release decisions.",
       implementation:
@@ -188,8 +197,9 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
         alt: "The Machinaka Bingo app screen with an illustrated townscape",
       },
       tags: ["Flutter", "Firebase", "iOS", "Android"],
-      problem:
-        "Walks, outings, and sightseeing strolls can feel monotonous without a goal, making it easy to miss new discoveries on familiar streets. Most bingo apps are draw-based games, and few are designed to be played while walking around town.",
+      originKind: "trigger",
+      origin:
+        "Some friends of ours already played a homemade bingo, filling in squares with things they found around town. When they told us they wanted an app for it, we decided to build one. Most bingo apps are draw-based games, and few are designed to be played while walking around town.",
       role:
         "As a CMIRU product, took part in planning and service design together with the development team.",
       implementation:
