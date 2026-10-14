@@ -22,9 +22,15 @@ export function ProjectDetail({ id }: { id: string }) {
   const prev = projects[index - 1];
   const next = projects[index + 1];
 
-  // 背景課題 → 担当 → 実装 → 結果 → 学び の順に並べる
+  // 始まり → 担当 → 実装 → 結果 → 学び の順に並べる。始まりの見出しは、課題からなら「背景課題」、人の声からなら「きっかけ」
   const details = [
-    { label: t.projectProblemLabel, text: project.problem },
+    {
+      label:
+        project.originKind === "problem"
+          ? t.projectProblemLabel
+          : t.projectTriggerLabel,
+      text: project.origin,
+    },
     { label: t.projectRoleLabel, text: project.role },
     { label: t.projectImplementationLabel, text: project.implementation },
     { label: t.projectResultLabel, text: project.result },
