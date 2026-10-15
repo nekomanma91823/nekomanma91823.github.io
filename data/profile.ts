@@ -1,5 +1,7 @@
 export interface ProfileData {
   tagline: string;
+  // アイコン（profileIcon）の代替テキスト
+  iconAlt: string;
   about: string;
   interests: string[];
   skills: string[];
@@ -14,9 +16,13 @@ export const contactEmail = {
   domain: "gmail.com",
 };
 
+// 顔写真の代わりのアイコン。本人が描いた、ペンを持った猫のイラストの顔のあたりを切り抜いたもの
+export const profileIcon = "/images/profile-icon.webp";
+
 export const profileDataByLocale: Record<Locale, ProfileData> = {
   ja: {
     tagline: "いつも考えています。",
+    iconAlt: "並崎 功真のアイコン（ペンを持った猫のイラスト）",
     about: `私は考えることが好きです。どうすればもっと面白くできるのか。どうすればもっと伝わりやすくなるのか。どうすればもっと皆が効率よく、負担が減るのか。ふとしたときにも考えてしまいます。
 「もっとよくできる」に気づき、考え抜き、動いて、形になるまでもっていく。それが私の強みです。
 
@@ -35,6 +41,7 @@ export const profileDataByLocale: Record<Locale, ProfileData> = {
   },
   en: {
     tagline: "Always thinking.",
+    iconAlt: "Takuma Namisaki's icon, an illustrated cat holding a pen",
     about: `I love to think. How can this be more fun? How can it be easier to understand? How can everyone work more efficiently, with less burden? I find myself thinking about these questions even in idle moments.
 Noticing where things could be better, thinking them through, taking action, and carrying them all the way to a finished result: that is my strength.
 
