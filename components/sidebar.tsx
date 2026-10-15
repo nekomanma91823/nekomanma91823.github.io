@@ -1,10 +1,15 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ExternalLink, Github, MapPin } from "lucide-react";
 import { EmailContact } from "@/components/email-contact";
-import { contactEmail, profileDataByLocale } from "@/data/profile";
+import {
+  contactEmail,
+  profileDataByLocale,
+  profileIcon,
+} from "@/data/profile";
 import { uiTextByLocale } from "@/data/ui-text";
 import { useLocale } from "@/lib/locale";
 import { cn } from "@/lib/utils";
@@ -29,6 +34,14 @@ export function Sidebar({ className }: { className?: string }) {
         className="flex flex-col gap-6"
       >
         <div>
+          <Image
+            src={profileIcon}
+            alt={profileData.iconAlt}
+            width={96}
+            height={96}
+            loading="eager"
+            className="mb-5 h-24 w-24 rounded-full border border-neutral-200 bg-white"
+          />
           <h1 className="text-4xl font-bold tracking-tight text-neutral-900 sm:text-5xl">
             並崎 功真
           </h1>
