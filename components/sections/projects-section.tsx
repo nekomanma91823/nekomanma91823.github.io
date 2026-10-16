@@ -1,7 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Database } from "lucide-react";
 import { ProjectHighlight } from "@/components/project-highlight";
 import { RevealSection } from "@/components/sections/reveal-section";
 import { Badge } from "@/components/ui/badge";
@@ -39,7 +40,26 @@ export function ProjectsSection() {
             data-cat-topic={project.id}
             className="group scroll-mt-24 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2"
           >
-            <Card className="flex h-full flex-col transition-all group-hover:-translate-y-0.5 group-hover:border-neutral-300 group-hover:shadow-md">
+            <Card className="flex h-full flex-col overflow-hidden transition-all group-hover:-translate-y-0.5 group-hover:border-neutral-300 group-hover:shadow-md">
+              {/* 画像は 1200:630 にそろえてある。画像のないプロジェクト（今は構成図待ちの SQL-RAG Agent）は、薄いアイコンだけの枠にする */}
+              <div className="relative aspect-[40/21] overflow-hidden border-b border-neutral-200 bg-neutral-100">
+                {project.image ? (
+                  <Image
+                    src={project.image.src}
+                    alt={project.image.alt}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center">
+                    <Database
+                      className="h-10 w-10 text-neutral-300"
+                      strokeWidth={1.5}
+                    />
+                  </div>
+                )}
+              </div>
               <CardHeader className="space-y-2">
                 <CardDescription className="text-xs">
                   {project.category}
