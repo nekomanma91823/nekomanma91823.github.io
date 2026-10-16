@@ -41,6 +41,36 @@ function findTopic(): string {
   return topic;
 }
 
+// 猫の絵（viewBox="0 0 64 48"、線は currentColor）。トップの幕（opening-intro.tsx）でも同じ猫を使う
+// 首と、逆さまの頭。y=0 が画面のふちで、頭はそこから下にぶら下がる
+export function CatHead() {
+  return (
+    <>
+      <path className="fill-white" d="M25 -24 V16 H39 V-24" />
+      <g transform="rotate(180 32 27)">
+        <path
+          className="fill-white"
+          d="M18 33 C16.5 25 17.5 18 20 12 L27.5 19.5 C30.5 18.5 33.5 18.5 36.5 19.5 L44 12 C46.5 18 47.5 25 46 33 C44.5 39.5 38.5 43 32 43 C25.5 43 19.5 39.5 18 33 Z"
+        />
+        <path d="M23.5 28 q2.5 2 5 0 M35.5 28 q2.5 2 5 0" />
+        <path d="M29 32.5 q1.5 1.8 3 0 q1.5 1.8 3 0" />
+        <path d="M13 30 l6 1.5 M13 34.5 l6 -0.5 M51 30 l-6 1.5 M51 34.5 l-6 -0.5" />
+      </g>
+    </>
+  );
+}
+
+// 画面のふちにかかった前足
+export function CatPaws() {
+  return (
+    <>
+      <path className="fill-white" d="M7 -2 V5 a6 6 0 0 0 12 0 V-2" />
+      <path className="fill-white" d="M45 -2 V5 a6 6 0 0 0 12 0 V-2" />
+      <path d="M11 11 v-2.5 M15 11 v-2.5 M49 11 v-2.5 M53 11 v-2.5" />
+    </>
+  );
+}
+
 interface HidingCatProps {
   locale: Locale;
   className?: string;
@@ -113,25 +143,14 @@ export function HidingCat({ locale, className }: HidingCatProps) {
                 : { type: "spring", stiffness: 240, damping: 16 }
             }
           >
-            <path className="fill-white" d="M25 -24 V16 H39 V-24" />
-            <g transform="rotate(180 32 27)">
-              <path
-                className="fill-white"
-                d="M18 33 C16.5 25 17.5 18 20 12 L27.5 19.5 C30.5 18.5 33.5 18.5 36.5 19.5 L44 12 C46.5 18 47.5 25 46 33 C44.5 39.5 38.5 43 32 43 C25.5 43 19.5 39.5 18 33 Z"
-              />
-              <path d="M23.5 28 q2.5 2 5 0 M35.5 28 q2.5 2 5 0" />
-              <path d="M29 32.5 q1.5 1.8 3 0 q1.5 1.8 3 0" />
-              <path d="M13 30 l6 1.5 M13 34.5 l6 -0.5 M51 30 l-6 1.5 M51 34.5 l-6 -0.5" />
-            </g>
+            <CatHead />
           </motion.g>
 
           {/* 画面のふちにかかった前足（いつも見えている） */}
           <g className="pointer-events-auto">
             {/* タップしやすいよう、前足のまわりを少し広めに当たり判定にする */}
             <rect x="4" y="0" width="56" height="16" fill="transparent" stroke="none" />
-            <path className="fill-white" d="M7 -2 V5 a6 6 0 0 0 12 0 V-2" />
-            <path className="fill-white" d="M45 -2 V5 a6 6 0 0 0 12 0 V-2" />
-            <path d="M11 11 v-2.5 M15 11 v-2.5 M49 11 v-2.5 M53 11 v-2.5" />
+            <CatPaws />
           </g>
         </svg>
 

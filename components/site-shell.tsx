@@ -1,9 +1,11 @@
 "use client";
 
+import { useCallback, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { HidingCat } from "@/components/hiding-cat";
 import { MobileMenu } from "@/components/mobile-menu";
+import { OpeningIntro } from "@/components/opening-intro";
 import { Sidebar } from "@/components/sidebar";
 import { SiteFooter } from "@/components/site-footer";
 import { useLocale } from "@/lib/locale";
@@ -12,6 +14,9 @@ import { useLocale } from "@/lib/locale";
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const { locale } = useLocale();
   const isHome = usePathname() === "/";
+  // トップから入ったときだけ、最初に幕を出す（ほかのページからトップへ移ったときは出さない）
+  const [showIntro, setShowIntro] = useState(isHome);
+  const endIntro = useCallback(() => setShowIntro(false), []);
 
   return (
     <div className="min-h-screen bg-zinc-50 text-foreground font-sans selection:bg-blue-100 selection:text-blue-900">
@@ -44,6 +49,8 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       />
 
       <MobileMenu />
+
+      {showIntro && <OpeningIntro onDone={endIntro} />}
     </div>
   );
 }
