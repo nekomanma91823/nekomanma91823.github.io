@@ -26,6 +26,7 @@ export interface UiText {
   projectTitle: string;
   projectStatusOngoing: string;
   projectProblemLabel: string;
+  projectTriggerLabel: string;
   projectRoleLabel: string;
   projectImplementationLabel: string;
   projectResultLabel: string;
@@ -72,6 +73,7 @@ export const uiTextByLocale: Record<Locale, UiText> = {
     projectTitle: "Projects",
     projectStatusOngoing: "進行中",
     projectProblemLabel: "背景課題",
+    projectTriggerLabel: "きっかけ",
     projectRoleLabel: "担当",
     projectImplementationLabel: "実装",
     projectResultLabel: "結果",
@@ -112,6 +114,7 @@ export const uiTextByLocale: Record<Locale, UiText> = {
     projectTitle: "Projects",
     projectStatusOngoing: "In Progress",
     projectProblemLabel: "Problem",
+    projectTriggerLabel: "How It Started",
     projectRoleLabel: "My Role",
     projectImplementationLabel: "Implementation",
     projectResultLabel: "Result",
