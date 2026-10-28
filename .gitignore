@@ -16,6 +16,8 @@
 # next.js
 /.next/
 /out/
+# next dev が自動で作る、AI エージェント向けの注意書き
+/AGENTS.md
 
 # production
 /build
