@@ -1,4 +1,3 @@
-import { Sparkles } from "lucide-react";
 import { MarkedText } from "@/components/marked-text";
 import { cn } from "@/lib/utils";
 
@@ -11,11 +10,8 @@ export function ProjectHighlight({
   className?: string;
 }) {
   return (
-    <p className={cn("flex items-start gap-2 text-sm text-neutral-800", className)}>
-      <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-amber-500" aria-hidden />
-      <span>
-        <MarkedText text={text} />
-      </span>
+    <p className={cn("text-sm text-neutral-800", className)}>
+      <MarkedText text={text} />
     </p>
   );
 }
