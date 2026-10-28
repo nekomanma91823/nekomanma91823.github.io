@@ -25,24 +25,25 @@ export type Locale = "ja" | "en";
 export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
   ja: [
     {
+      // URL を変えないよう、id は SQL アプリだったころのまま
       id: "sql-rag-agent",
-      title: "SQL-RAG Agent",
-      category: "業務効率化 / DataOps / AI活用",
+      title: "業務ナレッジRAG",
+      category: "業務効率化 / ナレッジマネジメント / AI活用",
       summary:
-        "日本語で質問すると、AIがSQLを作ってデータベースを検索する、チーム向けの業務アプリ。",
-      highlight: "==Excelでは扱えない規模のデータを処理可能に==",
-      tags: ["Next.js", "AWS", "Text-to-SQL", "RAG"],
+        "チームの業務の知識を1か所に集めて、誰でも探して使えるようにするナレッジ基盤。確かめ済みのSQLも、その場で実行できる。",
+      tags: ["Next.js", "FastAPI", "PostgreSQL", "AWS", "RAG"],
       originKind: "problem",
       origin:
-        "所属する大手予備校の過去問データ整備チームでは、大学入試の過去問の配点や正解などをデータベースに登録するマスタ業務を担っている。多くのテーブルのデータをCSVで扱い、データベースを直接操作できない運用だったため、Excelでの作業が常態化していた。プログラムを書けるメンバーは一部で、Pythonでの効率化も業務量に追いついていなかった。",
+        "所属する大手予備校の過去問データ整備チームでは、大学入試の過去問の配点や正解などをデータベースに登録するマスタ業務を担っている。アルバイトが中心のチームで、卒業や退職のたびに人が入れ替わる。例外的な業務の判断や失敗の経験はベテランの頭の中にだけ残り、新しい人は質問して覚えるしかなかった。手順を書いた文書も何か所にも散らばり、古い手順が残ったり、直し忘れが出たりしていた。",
       role:
-        "チームの統括者として、AIを使ったSQLアプリを発案。試作を作って社員への定例報告の場で提案し、開発から導入研修までを主導した。データ修正時の判断基準や手順など、担当者の暗黙知もプロンプトと運用ルールとして明文化した。",
+        "チームの統括者として、まずAIが日本語の質問からSQLを作るアプリを発案した。試作を作って社員への定例報告の場で提案し、開発から導入研修までを主導した。そこから、SQLだけでなく業務の手順やよく聞かれることの答えまで残せるナレッジ基盤へと広げ、知識の種類、担当、見直しの決まりを設計した。",
       implementation:
-        "Next.jsで画面を作り、AWS上でCSVのデータをデータベース化。自然言語の質問からSQLを生成し、構文をチェックしてから実行する。過去に使われたSQLを検索して生成に活かす（RAG）ハイブリッド構成にし、使うほど意図どおりのSQLが出るようにした。AIの誤りをメンバー自身が見抜けるよう、SQL研修も実施した（構成図は別途追加予定）。",
+        "Next.jsとFastAPIで作り、知識はAWS上のPostgreSQLにためる。知識は「部品・業務手順・QA・SQL・備忘録・挑戦/失敗/振り返り」の6種類に分け、業務手順とQAは部品を組み合わせて作る。部品を1か所直せば、それを使う手順とQAがすべて新しくなるので、直し忘れが起きない。登録した知識は機械のチェックと管理者の承認を経て公開され、読んだ人からの「古い・違う」の知らせや見直しの期限で担当者に戻る。AIが意味で探し、根拠を示して答える機能と、下書きを作る機能も実装した（構成図は別途追加予定）。",
       result:
-        "Excelでは扱えない規模のデータを処理できるようになり、マスタ業務の工数を減らせた。生成したSQLが蓄積される仕組みで、作業の属人化も解消した。現在は、追加データの作成やバリデーションもAIが自律的に行えるよう機能を広げている。",
+        "最初に作ったSQLアプリでは、Excelでは扱えない規模のデータも処理できるようになり、マスタ業務の工数を減らせた。ナレッジ基盤（RAG）は作り終え、書く、確かめる、承認する、探す、SQLを実行するといった基本の流れは、すでに本番で動いている。AIによる検索と回答を含めた本格的な運用は、これから始める。",
       learning:
-        "AI導入では速度向上だけでなく、精度保証の設計が本質的に重要だと学んだ。中間表現としてSQLを採用したことで、回答の妥当性確認と運用の再現性を両立できた。",
+        "知識は集めるだけでは残らず、書く手間を減らし、直す場所を1か所にまとめて、初めて続くと学んだ。書く人の気持ちも大切で、失敗だけを集めると責められる記録に見えて書きにくくなるため、挑戦も一緒に残すようにした。",
+      status: "ongoing",
     },
     {
       id: "picotouch",
@@ -119,23 +120,23 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
   en: [
     {
       id: "sql-rag-agent",
-      title: "SQL-RAG Agent",
-      category: "Workflow Automation / DataOps / Applied AI",
+      title: "Team Knowledge RAG",
+      category: "Workflow Automation / Knowledge Management / Applied AI",
       summary:
-        "A team app where AI turns plain-language questions into SQL and searches the database.",
-      highlight: "==Made data too large for Excel workable==",
-      tags: ["Next.js", "AWS", "Text-to-SQL", "RAG"],
+        "A knowledge base that gathers the team's know-how in one place so anyone can find and use it. Verified SQL can be run on the spot.",
+      tags: ["Next.js", "FastAPI", "PostgreSQL", "AWS", "RAG"],
       originKind: "problem",
       origin:
-        "I work on the past-exam data team at a major cram school, handling the master data work of registering scores, answers, and other details of past university entrance exam questions into a database. The data spanned many tables shared as CSV files, and without direct access to the database, Excel-based work had become the norm. Only some members could write code, and Python scripts could not keep up with the volume of work.",
+        "I work on the past-exam data team at a major cram school, handling the master data work of registering scores, answers, and other details of past university entrance exam questions into a database. The team is mostly part-timers, and members change whenever someone graduates or leaves. Judgment calls on unusual tasks and lessons from mistakes stayed only in veterans' heads, so newcomers could only learn by asking. Written procedures were scattered across several places, leaving outdated steps and missed updates.",
       role:
-        "As the team lead, proposed an AI-powered SQL app: built a prototype, pitched it at a regular progress meeting with staff, and led everything from development to onboarding training. Also turned tacit knowledge, such as how to judge and carry out data corrections, into explicit prompts and operational rules.",
+        "As the team lead, first proposed an app where AI turns questions in Japanese into SQL: built a prototype, pitched it at a regular progress meeting with staff, and led everything from development to onboarding training. Then expanded it into a knowledge base that keeps not only SQL but also procedures and answers to common questions, and designed the knowledge types, owners, and review rules.",
       implementation:
-        "Built the UI with Next.js and turned the CSV data into a database on AWS. Natural-language questions are converted into SQL, syntax-checked, and then executed. A hybrid design retrieves previously used SQL (RAG) to guide generation, so results get closer to what users intend the more the app is used. Also ran SQL training so members can spot AI mistakes themselves (architecture diagram coming soon).",
+        "Built with Next.js and FastAPI, storing knowledge in PostgreSQL on AWS. Knowledge is split into six types: parts, procedures, Q&A, SQL, notes, and challenges/failures/reflections. Procedures and Q&A are assembled from parts, so fixing a part in one place updates every procedure and answer that uses it, and nothing is left out of date. New entries go through automated checks and admin approval before they are published, and readers' \"outdated or wrong\" reports and review deadlines send them back to their owners. Also implemented AI features that search by meaning, answer with sources, and draft entries (architecture diagram coming soon).",
       result:
-        "Made data at a scale Excel could not handle workable and reduced the master data workload. Because generated SQL accumulates over time, the work no longer depends on specific individuals. Now extending the app so AI can also create additional data and run validation on its own.",
+        "The first-stage SQL app made data at a scale Excel could not handle workable and reduced the master data workload. The knowledge base (RAG) is now built, and the core flow of writing, checking, approving, searching, and running SQL already works in production. Full operation, including AI search and answers, starts next.",
       learning:
-        "In AI-driven efficiency projects, preserving answer quality is as important as speed. Using SQL as an intermediate layer was critical for accuracy and auditability.",
+        "Learned that collecting knowledge is not enough to keep it: it lasts only when writing is easy and every fix happens in one place. How writers feel matters too. A record of failures alone reads like blame and is hard to write, so challenges are kept alongside them.",
+      status: "ongoing",
     },
     {
       id: "picotouch",
