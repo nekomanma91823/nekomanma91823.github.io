@@ -23,9 +23,16 @@ export const researchDataByLocale: Record<Locale, ResearchData> = {
       {
         id: "master",
         stage: "修士",
-        title: "外部知識に忠実な文章生成",
+        title: "生成文書による小規模言語モデルの組み合わせ",
         description:
-          "LLMが外部から与えられた知識に、どれだけ忠実に文章を生成できるかを研究しています。",
+          "複数の小規模言語モデルを、生成した文書を介して組み合わせる方法を研究しています。",
+        outcomes: [
+          {
+            text: "国際会議 AROB 2027 に投稿中（審査中）",
+            link: "https://isarob.org/symposium/",
+            linkText: "学会",
+          },
+        ],
         current: true,
       },
       {
@@ -50,9 +57,16 @@ export const researchDataByLocale: Record<Locale, ResearchData> = {
       {
         id: "master",
         stage: "Master's",
-        title: "Faithful generation from external knowledge",
+        title: "Combining small language models through generated documents",
         description:
-          "Studying how faithfully LLMs can generate text based on knowledge given to them from outside.",
+          "Studying how to combine several small language models through the documents they generate.",
+        outcomes: [
+          {
+            text: "Submitted to AROB 2027 (international symposium), under review",
+            link: "https://isarob.org/symposium/",
+            linkText: "Symposium",
+          },
+        ],
         current: true,
       },
       {
