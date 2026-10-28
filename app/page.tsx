@@ -13,8 +13,8 @@ export default function Home() {
       <ResearchSection />
       <CareerSection />
       <PublicationsSection />
-      <ArticlesSection />
       <ProjectsSection />
+      <ArticlesSection />
     </>
   );
 }

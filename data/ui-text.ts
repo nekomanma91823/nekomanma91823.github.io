@@ -52,8 +52,8 @@ const nav: UiText["nav"] = [
   { name: "Research", href: "/#research", icon: FlaskConical },
   { name: "Career", href: "/#career", icon: Briefcase },
   { name: "Publications", href: "/#publications", icon: Award },
-  { name: "Articles", href: "/#articles", icon: Newspaper },
   { name: "Projects", href: "/#projects", icon: Code },
+  { name: "Articles", href: "/#articles", icon: Newspaper },
 ];
 
 export const uiTextByLocale: Record<Locale, UiText> = {
