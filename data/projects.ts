@@ -148,7 +148,7 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       highlight: "本番で公開し、==26の旅・156か所の足あとを記録==",
       image: {
         src: "/images/projects/my-travel.webp",
-        alt: "My Travel Map の表紙。題字と、旅の写真と、ねこのイラスト",
+        alt: "My Travel Map の題字と、旅の写真と、絵本風の日本地図",
       },
       tags: ["Next.js", "Cloudflare Workers", "D1", "R2", "MapLibre"],
       originKind: "trigger",
@@ -291,7 +291,7 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       highlight: "Live in production, ==recording 26 trips and 156 places==",
       image: {
         src: "/images/projects/my-travel.webp",
-        alt: "The cover of My Travel Map, with the title, a travel photo, and a cat illustration",
+        alt: "The My Travel Map title, a travel photo, and a picture-book map of Japan",
       },
       tags: ["Next.js", "Cloudflare Workers", "D1", "R2", "MapLibre"],
       originKind: "trigger",
