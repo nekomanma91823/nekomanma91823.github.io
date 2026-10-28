@@ -116,6 +116,54 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
         "「歩く」という日常の行動にビンゴという分かりやすいルールを重ねることで、新しい体験をつくれると学んだ。初めての人でも迷わず遊べるよう、チュートリアルやカード作成の導線設計が重要になる。",
       url: "https://bingo.cmiru.com",
     },
+    {
+      id: "memo-sync",
+      title: "メモシンク（Chrome拡張機能）",
+      category: "個人開発 / ブラウザ拡張 / 生産性",
+      summary:
+        "すぐ書けて、複数のPCに同期できる、日本語のシンプルなメモのChrome拡張機能。",
+      image: {
+        src: "/images/projects/memo-sync.webp",
+        alt: "メモシンクのアイコンと、チェックリストと表を書いたメモの画面",
+      },
+      tags: ["JavaScript", "Chrome拡張機能", "Manifest V3", "Google Drive API"],
+      originKind: "trigger",
+      origin:
+        "研究でも仕事でも、ちょっとしたことをすぐ書き留めたい場面が多い。けれど、使っていたメモの拡張機能は、日本語での使いやすさや、複数のPCでの同期に物足りなさがあった。自分が毎日使う道具として、開いてすぐ書けて、どのPCでも同じメモが見られるものを作ることにした。",
+      role: "企画から設計・実装・テスト、ストアへの公開の準備まで、1人で担当した。",
+      implementation:
+        "外部のライブラリを使わず、JavaScriptとChromeの拡張機能の仕組み（Manifest V3）だけで作った。同期は、Chromeの同期機能か、Googleドライブのアプリ専用の見えない場所から選べる。メモは番号ではなく固定のIDで扱い、メモごとに新しいほうを採用する。両方のPCで書き換わっていたときは、負けたほうをバックアップに取って知らせ、消えたことも印を残して伝える。Markdownの表示、すべてのメモからの検索と置換、画像の貼り付けと印付け、コーディングAIにそのまま渡せるコピーも備えた。パスワードやAPIキーらしい文字は、PCの中だけで見つけて知らせる。",
+      result:
+        "メモは利用者のPCとGoogleアカウントの中だけに置き、開発者のサーバー・利用状況の記録・広告のない形にした。同期の動きを自動テストで確かめられるようにし、Chromeウェブストアでの公開を準備している。",
+      learning:
+        "同期は、ふだんは目立たないが、間違えると大事なメモが消える。どちらを残すか、消したことをどう伝えるかを先に決め、負けたほうを必ず残すようにしたことで、安心して毎日使える道具になると学んだ。",
+      status: "ongoing",
+    },
+    {
+      id: "my-travel",
+      title: "My Travel Map（旅の絵日記サイト）",
+      category: "個人開発 / Webサービス / 地図",
+      summary:
+        "行った場所を地図にピンで残し、旅ごとの絵日記として見せる、ねこと歩く旅の記録サイト。",
+      highlight: "本番で公開し、==26の旅・156か所の足あとを記録==",
+      image: {
+        src: "/images/projects/my-travel.webp",
+        alt: "My Travel Map の表紙。題字と、旅の写真と、ねこのイラスト",
+      },
+      tags: ["Next.js", "Cloudflare Workers", "D1", "R2", "MapLibre"],
+      originKind: "trigger",
+      origin:
+        "旅行や登山、食べ歩きで行った場所を、あとから振り返る場所がなかった。写真やメモはばらばらに残り、どこへいつ行ったのかが見えにくかった。行った場所を地図で一目で見られて、眺めるだけでも楽しい自分用の記録を作ることにした。",
+      role: "企画・デザイン・実装から、本番での運用まで1人で担当した。",
+      implementation:
+        "Next.jsをCloudflare Workersで動かし、データはD1（Drizzle）、写真はR2に置く。地図はMapLibreとOpenFreeMapで描き、色はパレットの定義から作った。表紙が本のようにめくれ、旅を開くとねこが道のりを歩いて足あとを残す。旅ごとの挿絵は旅のデータから組み立て、写真がない旅でも1ページになる。管理画面「旅の編集室」からは、旅の追加、場所の検索、立ち寄り先の並べ替え、写真の追加ができる。写真はブラウザで縮小し、位置情報の入ったEXIFを消してから送る。",
+      result:
+        "本番で公開し、==26の旅・156か所の足あとを記録==した。都道府県のスタンプ、年ごとのふりかえり、前の年の同じころの旅を出す「あの日の旅」など、使いながら機能を足し続けている。",
+      learning:
+        "最初はJSONファイルを手で直す静的サイトにしたが、更新の手間が重いと続かないと分かり、DBと管理画面に作り直した。写真に撮影日や場所を入れる設計もやめ、続けられる最小の形にした。データの形がきれいでも、入力する人の手間が重ければ使われないと学んだ。",
+      url: "https://my-travel.ta-namisaki.workers.dev",
+      status: "ongoing",
+    },
   ],
   en: [
     {
@@ -210,6 +258,54 @@ export const projectsDataByLocale: Record<Locale, ProjectItem[]> = {
       learning:
         "Layering a simple, familiar rule like bingo onto an everyday activity like walking can create a new experience. Onboarding, such as tutorials and a clear card-creation flow, is key for first-time users.",
       url: "https://bingo.cmiru.com",
+    },
+    {
+      id: "memo-sync",
+      title: "Memo Sync (Chrome Extension)",
+      category: "Personal Project / Browser Extension / Productivity",
+      summary:
+        "A simple Japanese-friendly note-taking Chrome extension that opens instantly and syncs across PCs.",
+      image: {
+        src: "/images/projects/memo-sync.webp",
+        alt: "The Memo Sync icon and a note with a checklist and a table",
+      },
+      tags: ["JavaScript", "Chrome Extension", "Manifest V3", "Google Drive API"],
+      originKind: "trigger",
+      origin:
+        "In both research and work, I often want to jot something down right away. The note extensions I used fell short on ease of use in Japanese and on syncing across several PCs. So I decided to build the tool I use every day: one that is ready to write in the moment it opens and shows the same notes on every PC.",
+      role: "Handled everything on my own, from planning and design to implementation, testing, and preparing the store release.",
+      implementation:
+        "Built with plain JavaScript and the Chrome extension platform (Manifest V3), without external libraries. Sync runs through either Chrome sync or a hidden app-only folder in Google Drive. Notes are tracked by fixed IDs rather than tab numbers, and the newer version of each note wins. When a note changed on both PCs, the losing version is backed up and the user is told, and deletions are passed on as markers. It also has a Markdown view, search and replace across all notes, image pasting with annotations, and a copy button that hands everything to a coding AI as is. Text that looks like a password or API key is detected on the PC only.",
+      result:
+        "Notes stay only on the user's PC and in their Google account, with no developer server, usage tracking, or ads. The sync behavior is covered by automated tests, and the Chrome Web Store release is in preparation.",
+      learning:
+        "Sync stays invisible most of the time, but one mistake can erase an important note. Deciding up front which version to keep and how to pass on deletions, and always keeping the losing version, is what makes a tool safe to use every day.",
+      status: "ongoing",
+    },
+    {
+      id: "my-travel",
+      title: "My Travel Map (Travel Picture Diary)",
+      category: "Personal Project / Web Service / Maps",
+      summary:
+        "A travel record site that pins the places I have been on a map and shows each trip as a picture diary, walked with a cat.",
+      highlight: "Live in production, ==recording 26 trips and 156 places==",
+      image: {
+        src: "/images/projects/my-travel.webp",
+        alt: "The cover of My Travel Map, with the title, a travel photo, and a cat illustration",
+      },
+      tags: ["Next.js", "Cloudflare Workers", "D1", "R2", "MapLibre"],
+      originKind: "trigger",
+      origin:
+        "I had no place to look back on where I had been for trips, hikes, and food outings. Photos and notes were scattered, so it was hard to see where I went and when. I decided to make a record for myself that shows every place on a map at a glance and is fun just to browse.",
+      role: "Handled everything on my own, from planning, design, and implementation to running it in production.",
+      implementation:
+        "Next.js runs on Cloudflare Workers, with data in D1 (Drizzle) and photos in R2. The map is drawn with MapLibre and OpenFreeMap, with colors generated from a palette definition. The cover turns like a book, and opening a trip sends a cat walking along the route, leaving footprints. Each trip's illustration is assembled from its data, so even trips without photos make a full page. From the admin screen, I can add trips, search for places, reorder stops, and add photos. Photos are resized in the browser and stripped of location EXIF data before upload.",
+      result:
+        "Live in production, ==recording 26 trips and 156 places==. I keep adding features while using it, such as prefecture stamps, a yearly look back, and \"On this day\", which brings up trips from around this time in past years.",
+      learning:
+        "I first built it as a static site edited by hand in a JSON file, but found that heavy updates do not last, so I rebuilt it with a database and an admin screen. I also dropped per-photo dates and places to keep it at the smallest form I could keep up. Learned that even a clean data model goes unused if entering data is a burden.",
+      url: "https://my-travel.ta-namisaki.workers.dev",
+      status: "ongoing",
     },
   ],
 };
